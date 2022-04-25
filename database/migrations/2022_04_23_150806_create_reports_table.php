@@ -16,6 +16,8 @@ class CreateReportsTable extends Migration
         Schema::create('reports', function (Blueprint $table) {
             $table->bigInteger('id')->index();
             $table->bigInteger('user_id')->unsiged()->index();
+            $table->string('report_name', 40)->index()->nullable()->comment('名前');
+
             $table->timestamps();
         });
     }
