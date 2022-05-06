@@ -14,10 +14,10 @@ class CreateNotificationsTable extends Migration
     public function up()
     {
         Schema::create('notifications', function (Blueprint $table) {
-            $table->integer('id')->index();
+            $table->id();
             $table->bigInteger('received_user_id')->index()->comment('お知らせを受信した生徒のユーザーID');
-            $table->bigInteger('sent_user_id')->index()->default(null)->comment('お知らせを送信した先生のユーザーID');
-            $table->char('message','250');
+            $table->bigInteger('sent_user_id')->index()->comment('お知らせを送信した先生のユーザーID');
+            $table->text('message');
             $table->timestamps();
         });
     }

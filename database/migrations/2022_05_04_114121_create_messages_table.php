@@ -14,14 +14,16 @@ class CreateMessagesTable extends Migration
     public function up()
     {
         Schema::create('messages', function (Blueprint $table) {
-            $table->bigInteger('id')->index();
-            $table->integer('chat_room_id')->index();
+            $table->id();
+            $table->integer('chat_room_id')->unique();
             $table->bigInteger('teacher_room_id')->nullable();
             $table->bigInteger('student_room_id')->nullable();
             $table->string('body',250)->comment('文字数は最大２５０字まで');
             $table->bigInteger('create_user_id');
-            $table->timestamp('created_at')->nullable();
+            $table->boolean('delete_flg')->nullable();
             $table->timestamp('deleted_at')->nullable();
+            $table->timestamps();
+
         });
     }
 
