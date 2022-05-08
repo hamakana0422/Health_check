@@ -9,7 +9,7 @@ class UserController extends Controller
     //先生
     public function t_login()
     {
-        return view('teather.login');
+        return view('teacher.login');
     }
 
     public function t_create()
