@@ -21,34 +21,24 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+
+
 // 以下、先生用
-Route::get('/teacher/login', function () {
-    return view('teacher/login');
-});
+Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 't_login']);
 
 // Route::get('/teacher/login', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/teacher/create', function () {
-    return view('teacher/create');
-});
+Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create']);
 
-Route::get('/teacher/registerforstudent', function () {
-    return view('teacher/registerforstudent');
-});
+Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);
 
-Route::get('/teacher/edit', function () {
-    return view('teacher/edit');
-});
+Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
 
 // 以下、生徒用
-Route::get('/student/login', function () {
-    return view('student/login');
-});
+Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);
 
-Route::get('/student/firstlogin', function () {
-    return view('student/firstlogin');
-});
+//Route::post('/student/login',[App\Http\Controllers\Auth\LoginController::class, 'login']);
 
-Route::get('/student/edit', function () {
-    return view('student/edit');
-});
+Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'f_login']);
+
+Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit']);
