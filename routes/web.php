@@ -37,7 +37,7 @@ Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit
 // 以下、生徒用
 Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);
 
-//Route::post('/student/login',[App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('/student/login',[App\Http\Controllers\Auth\LoginController::class, 'f_login']);
 
 Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'f_login']);
 
