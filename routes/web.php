@@ -21,6 +21,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/student/login',[App\Http\Controllers\Auth\LoginController::class, 's_login']);
+
+Route::post('/student/login',[App\Http\Controllers\Auth\LoginController::class, 'login']);
+
+
+Route::get('/student/home',[App\Http\Controllers\LoginController::class, '']);

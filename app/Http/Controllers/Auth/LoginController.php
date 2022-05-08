@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
+use App\Models\User;
+use Illuminate\Http\Request;
+
 class LoginController extends Controller
 {
     /*
@@ -36,5 +39,20 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function s_login()
+    {
+        return view('student.login');
+    }
+
+    public function login(Request $request)
+    {
+        $login_user = User::where('email', $request->email)->first();
+        if ($login_user->login_check) {
+            return redirect('/student/home'); //true（ログインしたことがある。ホーム画面へ）
+        }
+        return redirect('student/'); //faulse（ログインしたことがないのでパスワード変更画面へ）
+
     }
 }
