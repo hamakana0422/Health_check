@@ -34,6 +34,18 @@ Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::
 
 Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
 
+Route::get('/teacher/notification', function() {
+    return view ('teacher/notification');
+});
+
+Route::get('/teacher/noticehistory', function() {
+    return view ('teacher/noticehistory');
+});
+
+Route::get('/teacher/edithistory', function() {
+    return view ('teacher/edithistory');
+});
+
 // 以下、生徒用
 Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);
 

@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('名') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('姓(フリガナ)') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -42,7 +42,7 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('姓(フリガナ)') }}</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('名') }}</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -68,6 +68,27 @@
                                 @enderror
                             </div>
                         </div>
+
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('性別') }}</label>
+
+                            <div class="col-md-6">
+                                <label><input type="radio" name="gender" value="male">男　</label>
+                                <label><input type="radio" name="gender" value="female">女　</label>
+                                <label><input type="radio" name="gender" value="female">その他</label>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('生年月日') }}</label>
+
+                            <div class="col-md-2">
+                                <label><input type="text" class="form-control" required autofocus>年　</label>
+                                <label><input type="text" class="form-control" required autofocus>月　</label>
+                                <label><input type="text" class="form-control" required autofocus>日</label>
+                            </div>
+                        </div>
+
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
