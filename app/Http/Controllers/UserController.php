@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -16,6 +18,19 @@ class UserController extends Controller
     public function t_create()
     {
         return view('teacher.create');
+    }
+
+    public function insertTeacher(Request $request)
+    {
+        User::create([
+            'user_type' => 0,
+            'first_name' => $request->name,
+            'last_name'=> $request->name,
+            'email'=> $request->email,
+            'password'=> Hash::make($request->password)
+        ]);
+
+        retuen redirec
     }
 
     public function registerstudent()
@@ -37,13 +52,17 @@ class UserController extends Controller
 
     public function f_login(Request $request)
     {
-        $login_user = User::where('email', $request->email)->first();
-        if ($login_user->login_check) {
-            return redirect('/student/home'); //true（ログインしたことがある。ホーム画面へ）
-        }
-        return redirect('/student/firstlogin'); //faulse（ログインしたことがないのでパスワード変更画面へ）
+        $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
+        
+        //メールアドレスとパスワードが一致するかどうかを判別し、一致しなければ【ログインIDもしくはパスワードが違います】
+        //一致したら、以下の処理
 
-    }
+        if ($login_user->login_check === 0) { //issetではNULLのみfalse  空文字・0・false全てtrueになる→!issetはNULLのみtrue それ以外はfalse
+            return view('student.firstlogin'); //（ログインチェックがtrueじゃなければ。パスワード変更画面へ）
+        }else if ($login_user->login_check === 1) {
+            return view('student.home'); //（ログインチェックがfaulseでない→trueであればhome画面へ）
+        }
+    } 
 
     // public function f_login()
     // {

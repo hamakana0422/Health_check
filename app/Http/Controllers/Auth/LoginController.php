@@ -48,7 +48,7 @@ class LoginController extends Controller
         if ($login_user->login_check) {
             return redirect('/student/home'); //true（ログインしたことがある。ホーム画面へ）
         }
-        return redirect('student/'); //faulse（ログインしたことがないのでパスワード変更画面へ）
+        return redirect('student/firstlogin'); //faulse（ログインしたことがないのでパスワード変更画面へ）
 
     }
 }

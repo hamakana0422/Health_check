@@ -30,15 +30,19 @@ Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 't_log
 
 Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create']);
 
+Route::post('/teacher/create', [App\Http\Controllers\UserController::class, 'insertTeacher']);
+
 Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);
 
 Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
 
 // 以下、生徒用
-Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);
+Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);//OK
 
-Route::post('/student/login',[App\Http\Controllers\Auth\LoginController::class, 'f_login']);
+Route::post('/student/login',[App\Http\Controllers\UserController::class, 'f_login']);//OK
 
-Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'f_login']);
+Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
+
+Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, '']);
 
 Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit']);
