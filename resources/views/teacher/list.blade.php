@@ -52,6 +52,7 @@
             <td>{{ '1990/5/5' }}</td>
             <td>{{ 'example@email.com' }}</td>
             <td><a href="{{ url('/teacher/report') }}">{{ '体調確認画面へ' }}</a></td>
+            <td><button type="submit" class="btn btn-danger">{{ __('アカウント削除') }}</button></td>
         </tr>
     </table>
 

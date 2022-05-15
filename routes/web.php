@@ -54,3 +54,9 @@ Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_log
 Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'f_login']);
 
 Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit']);
+
+
+// チャット画面
+Route::get('/chat', function () {
+    return view('chat');
+});

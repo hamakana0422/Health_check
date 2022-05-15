@@ -14,7 +14,9 @@
                         @csrf
 
                         <!-- 初回ログイン時のみ表示させるように実装予定 -->
-                        <p>先生から入手したIDとパスワードでログインしてください。</p>
+                        <div class="text-center bg-warning rounded-3">
+                            <p>先生から入手したIDとパスワードでログインしてください。</p>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
