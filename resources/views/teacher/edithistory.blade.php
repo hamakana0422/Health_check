@@ -17,11 +17,7 @@
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('投稿日') }}</label>
 
                             <!-- 自動的に投稿した日付が表示されるように実装予定 -->
-                            <div class="col-md-2">
-                                <label><input type="text" class="form-control" required autofocus>年　</label>
-                                <label><input type="text" class="form-control" required autofocus>月　</label>
-                                <label><input type="text" class="form-control" required autofocus>日</label>
-                            </div>
+
                         </div>
 
                         <div class="row mb-3">
@@ -39,7 +35,7 @@
                                     {{ __('変更する') }}
                                 </button>
 
-                                <button type="submit" class="btn btn-secondary" onclick="location.href='./teacher/noticehistory'" style="position:relative;left:36.5px;">
+                                <button type="submit" class="btn btn-secondary" onclick="location.href='noticehistory'" style="position:relative;left:36.5px;">
                                     {{ __('キャンセル') }}
                                 </button>
                             </div>

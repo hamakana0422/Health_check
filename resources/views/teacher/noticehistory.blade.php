@@ -8,7 +8,7 @@
 <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/teacher/home') }}">
                     {{ __('東京小学校　体調管理システム') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -46,8 +46,8 @@
         <tr>
             <td>{{ '2022/1/10' }}</td>
             <td>{{ 'あけましておめでとうございます。本年もよろしくお願いいたします。' }}</td>
-            <td><a href="{{ url('/teacher/edithistory') }}">{{ '編集する' }}</a></td>
-            <td><button type="submit" class="btn btn-danger">削除する</button></td>
+            <td style="text-align: center;"><a href="{{ url('/teacher/edithistory') }}">{{ '編集する' }}</a></td>
+            <td style="text-align: center;"><button type="submit" class="btn btn-danger">削除する</button></td>
         </tr>
     </table>
 

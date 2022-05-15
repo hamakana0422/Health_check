@@ -8,7 +8,7 @@
 <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/teacher/home') }}">
                     {{ __('東京小学校　体調管理システム') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -31,9 +31,7 @@
                                 </li>
                             <!-- @endif -->
                             <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
+                                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('ログアウト') }}
                                     </a>
 
@@ -53,13 +51,13 @@
     </div>
 
     <div class="d-grid gap-5 col-4 mx-auto">
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" onclick="location.href='list'">
             {{ __('生徒一覧画面') }}
         </button>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" onclick="location.href='notification'">
             {{ __('お知らせ投稿') }}
         </button>
-        <button type="submit" class="btn btn-primary">
+        <button type="submit" class="btn btn-primary" onclick="location.href='../chat'">
             {{ __('生徒とチャット') }}
         </button>
     </div>

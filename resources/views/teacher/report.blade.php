@@ -8,7 +8,7 @@
 <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/teacher/home') }}">
                     {{ __('東京小学校　体調管理システム') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -26,8 +26,8 @@
     </div>
 
     <div class="gap-5 col-4 mx-3">
-        <button type="submit" class="btn btn-primary">
-            <a href="{{ url('/teacher/home') }}"></a>{{ __('ホーム画面へ戻る') }}
+        <button type="submit" class="btn btn-primary" onclick="location.href='home'">
+            {{ __('ホーム画面へ戻る') }}
         </button>
     </div>
 

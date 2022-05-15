@@ -28,12 +28,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('名') }}</label>
+                            <label for="last_name_kana" class="col-md-4 col-form-label text-md-end">{{ __('姓(フリガナ)') }}</label>
 
                             <div class="col-md-6">
-                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
+                                <input id="last_name_kana" type="text" class="form-control @error('last_name_kana') is-invalid @enderror" name="last_name_kana" value="{{ old('last_name_kana') }}" required autocomplete="last_name_kana" autofocus>
 
-                                @error('first_name')
+                                @error('last_name_kana')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -42,12 +42,12 @@
                         </div>
 
                         <div class="row mb-3">
-                            <label for="last_name_kana" class="col-md-4 col-form-label text-md-end">{{ __('姓(フリガナ)') }}</label>
+                            <label for="first_name" class="col-md-4 col-form-label text-md-end">{{ __('名') }}</label>
 
                             <div class="col-md-6">
-                                <input id="last_name_kana" type="text" class="form-control @error('last_name_kana') is-invalid @enderror" name="last_name_kana" value="{{ old('last_name_kana') }}" required autocomplete="last_name_kana" autofocus>
+                                <input id="first_name" type="text" class="form-control @error('first_name') is-invalid @enderror" name="first_name" value="{{ old('first_name') }}" required autocomplete="first_name" autofocus>
 
-                                @error('last_name_kana')
+                                @error('first_name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -91,7 +91,7 @@
 
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('ID(メールアドレス)') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">

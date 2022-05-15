@@ -64,7 +64,7 @@
                                     {{ __('変更する') }}
                                 </button>
 
-                                <button type="submit" class="btn btn-secondary" style="position:relative;left:36.5px;">
+                                <button type="submit" class="btn btn-secondary" onclick="location.href='home'" style="position:relative;left:36.5px;">
                                     {{ __('キャンセル') }}
                                 </button>
                             </div>

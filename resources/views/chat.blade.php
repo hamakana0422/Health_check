@@ -7,7 +7,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('東京小学校　体調管理システム') }}</div>
+                <div class="card-header">{{ __('東京小学校　体調管理システム<チャット画面>') }}</div>
 
                     <div class="line__container">
                         <div class="line__title">

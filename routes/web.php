@@ -46,6 +46,22 @@ Route::get('/teacher/edithistory', function() {
     return view ('teacher/edithistory');
 });
 
+Route::get('/teacher/home', function() {
+    return view ('teacher/home');
+}); // 2022/5/15 下村追記 4.先生用ホーム画面用
+
+Route::get('/teacher/list', function() {
+    return view ('teacher/list');
+}); // 2022/5/15 下村追記 5-1.生徒一覧画面用
+
+Route::get('/teacher/report', function() {
+    return view ('teacher/report');
+}); // 2022/5/15 下村追記 5-2.生徒体調確認画面用
+
+Route::get('/teacher/account', function() {
+    return view ('teacher/account');
+}); // 2022/5/15 下村追記 6-1.アカウント作成／編集画面(先生用)用
+
 // 以下、生徒用
 Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);
 
@@ -55,8 +71,12 @@ Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, '
 
 Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit']);
 
+Route::get('/student/home', function() {
+    return view ('student/home');
+}); // 2022/5/15 下村追記 4.生徒用ホーム画面用
+
 
 // チャット画面
 Route::get('/chat', function () {
     return view('chat');
-});
+}); // 2022/5/15 下村追記 チャット画面用

@@ -17,7 +17,13 @@
                             <label for="notification" class="col-md-4 col-form-label text-md-end">{{ __('お知らせ内容入力') }}</label>
 
                             <div class="col-md-6">
-                                <textarea class="form-control" id="notification" row="3"></textarea>
+                                <textarea id="notification" type="text" class="form-control @error('notification') is-invalid @enderror" name="notification" value="{{ old('notification') }}" required autocomplete="notification" autofocus></textarea>
+
+                                @error('last_name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
                         </div>
 
@@ -27,7 +33,7 @@
                                     {{ __('投稿する') }}
                                 </button>
 
-                                <button type="submit" class="btn btn-secondary" onclick="location.href='./teacher/home'" style="position:relative;left:36.5px;">
+                                <button type="submit" class="btn btn-secondary" onclick="location.href='home'" style="position:relative;left:36.5px;">
                                     {{ __('キャンセル') }}
                                 </button>
                             </div>
@@ -35,8 +41,8 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-secondary" onclick="location.href='./teacher/'">
-                                    {{ __('以前投稿した内容を編集／削除') }}
+                                <button type="submit" class="btn btn-secondary" onclick="location.href='teacher/noticehistory'">
+                                    {{ __('以前投稿した内容一覧') }}
                                 </button>
                             </div>
                         </div>
