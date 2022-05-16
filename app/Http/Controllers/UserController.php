@@ -38,9 +38,10 @@ class UserController extends Controller
     
     }
 
+    // 先生の会員登録
     public function insertTeacher(Request $request)
     {
-        //Validation
+        //【todo】Validation追加
         User::create([
             'user_type' => 0,
             'first_name' => $request->name,
@@ -52,7 +53,7 @@ class UserController extends Controller
 
         return redirect('teacher/home');
 
-    }//OK
+    }
 
     public function registerstudent()
     {
@@ -71,15 +72,14 @@ class UserController extends Controller
 
     }
 
+    //ログイン画面で先生か生徒か、初回ログインか２回目以降かの判別をする→生徒と先生のログイン画面は元々違うので、
+    //
     public function f_login(Request $request)
     {
         $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
       
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
         if ($result){
-            if  ($login_user->user_type === 0) {
-                return view('/home'); //【todo】先生のホーム画面に飛ばす
-            }
             if ($login_user->login_check === 0) { //issetではNULLのみfalse  空文字・0・false全てtrueになる→!issetはNULLのみtrue それ以外はfalse
                 return redirect('/student/firstlogin'); //（ログインチェックがtrueじゃなければ。パスワード変更画面へ）
             }else if ($login_user->login_check === 1) {
