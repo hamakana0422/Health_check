@@ -1,17 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ReportController;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
 
 Route::get('/', function () {
     return view('welcome');
@@ -31,6 +23,8 @@ Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 't_log
 Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create']);
 
 Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);
+
+Route::get('/teacher/report', [App\Http\Controllers\ReportController::class, 't_report']);
 
 Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
 
@@ -54,9 +48,7 @@ Route::get('/teacher/list', function() {
     return view ('teacher/list');
 }); // 2022/5/15 下村追記 5-1.生徒一覧画面用
 
-Route::get('/teacher/report', function() {
-    return view ('teacher/report');
-}); // 2022/5/15 下村追記 5-2.生徒体調確認画面用
+// 2022/5/16 住吉 5-2.生徒体調確認画面用 Route文変更
 
 Route::get('/teacher/account', function() {
     return view ('teacher/account');
@@ -69,6 +61,8 @@ Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_log
 
 Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'f_login']);
 
+Route::get('/student/report', [App\Http\Controllers\ReportController::class, 's_report']);
+
 Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit']);
 
 Route::get('/student/home', function() {
@@ -77,6 +71,5 @@ Route::get('/student/home', function() {
 
 
 // チャット画面
-Route::get('/chat', function () {
-    return view('chat');
-}); // 2022/5/15 下村追記 チャット画面用
+Route::get('chat', [App\Http\Controllers\MessageController::class, 'chat']);
+ // 2022/5/16 住吉Route変更
