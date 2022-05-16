@@ -1,14 +1,14 @@
-<!-- 4.生徒用ホーム画面 -->
+<!-- 6-1.アカウント作成／編集画面(先生用) -->
 
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{ url('/student/home') }}">
+<form method="POST" action="{{ url('/teacher/account') }}">
     @csrf
 <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/student/home') }}">
+                <a class="navbar-brand" href="{{ url('/teacher/home') }}">
                     {{ __('東京小学校　体調管理システム') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -26,13 +26,6 @@
                         <!-- Authentication Links -->
                         <!-- @guest
                             @if (Route::has('login')) -->
-                            <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/student/notification') }}">{{ __('先生からのお知らせ') }}</a>
-                                </li>
-
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/student/edit') }}">{{ __('アカウント編集') }}</a>
-                                </li>
                             <!-- @endif -->
                             <li class="nav-item">
                                     <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
@@ -48,32 +41,18 @@
                 </div>
             </div>
         </nav>
-    </div>
 
-    <div style="display: block; text-align: center; margin-bottom: 20px;">
-    <?php
-        date_default_timezone_set('Asia/Tokyo');
-        function funcWeek(){
-            return array('日', '月', '火', '水', '木', '金', '土');
-        }
-        $w = funcWeek()[date("w")];
-        echo '今日は、';
-        echo date("Y年m月d日　$w");
-        echo '曜日　です。';
-    ?>
-    </div>
-
-    <!-- 前日に報告がない場合のみ表示するように実装予定 -->
-    <div class="text-center mb-5 bg-warning">
-        <h3>前日の体調報告がありません。</br>体調報告画面より報告してください。</h3>
+        <main class="py-4">
+            @yield('content')
+        </main>
     </div>
 
     <div class="d-grid gap-5 col-4 mx-auto">
-        <button type="submit" class="btn btn-primary" onclick="location.href='report'">
-            {{ __('体調報告画面') }}
+        <button type="submit" class="btn btn-primary" onclick="location.href='registerforstudent'">
+            {{ __('生徒用アカウント作成') }}
         </button>
-        <button type="submit" class="btn btn-primary" onclick="location.href='../chat'">
-            {{ __('先生とチャット') }}
+        <button type="submit" class="btn btn-primary" onclick="location.href='edit'">
+            {{ __('自分のアカウント編集') }}
         </button>
     </div>
 </div>

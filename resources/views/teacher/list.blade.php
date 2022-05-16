@@ -8,7 +8,7 @@
 <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
+                <a class="navbar-brand" href="{{ url('/teacher/home') }}">
                     {{ __('東京小学校　体調管理システム') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
@@ -26,9 +26,9 @@
     </div>
 
     <div class="gap-5 col-4 mx-3">
-        <button type="submit" class="btn btn-primary">
-            <a href="{{ url('/teacher/home') }}"></a>{{ __('ホーム画面へ戻る') }}
-        </button>
+        <a href="/teacher/home" class="btn btn-primary">
+            {{ __('ホーム画面へ戻る') }}
+        </a>
     </div>
 
     <div class="text-center mt-5">
@@ -51,7 +51,8 @@
             <td>{{ '男' }}</td>
             <td>{{ '1990/5/5' }}</td>
             <td>{{ 'example@email.com' }}</td>
-            <td><a href="{{ url('/teacher/report') }}">{{ '体調確認画面へ' }}</a></td>
+            <td style="text-align: center;"><a href="{{ url('/teacher/report') }}">{{ '体調確認画面へ' }}</a></td>
+            <td style="text-align: center;"><button type="submit" class="btn btn-danger">{{ __('アカウント削除') }}</button></td>
         </tr>
     </table>
 

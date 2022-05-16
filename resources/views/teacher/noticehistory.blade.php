@@ -1,9 +1,9 @@
-<!-- 5-2.生徒体調確認画面 -->
+<!-- 7-2.お知らせ文編集／削除選択画面 -->
 
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{ url('/teacher/report') }}">
+<form method="POST" action="{{ url('/teacher/noticehistory') }}">
     @csrf
 <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
@@ -26,31 +26,28 @@
     </div>
 
     <div class="gap-5 col-4 mx-3">
-        <button type="submit" class="btn btn-primary" onclick="location.href='home'">
-            {{ __('ホーム画面へ戻る') }}
+        <button type="submit" class="btn btn-primary">
+            <a href="{{ url('/teacher/home') }}"></a>{{ __('ホーム画面へ戻る') }}
         </button>
     </div>
 
-    <!-- "田中学"の部分はレコードより取得できるように実装すること -->
     <div class="text-center mt-5">
-        <h3>田中学さんの体調確認画面です。</h3>
+        <h3>過去に投稿したお知らせについて、編集や削除ができます。</h3>
     </div>
 
     <table class="table table-bordered mt-5">
         <tr>
-            <th>報告日</th>
-            <th>体調</th>
-            <th>体温</th>
-            <th>食事回数</th>
-            <th>睡眠時間</th>
+            <th>投稿日</th>
+            <th>お知らせ内容</th>
+            <th></th>
+            <th></th>
         </tr>
-        <!-- 下記波括弧部分については、レコードから情報を取得できるようにすること -->
+        <!-- 下記波括弧部分(投稿日とお知らせ内容文)については、レコードから情報を取得できるようにすること -->
         <tr>
-            <td>{{ '2022/5/1' }}</td>
-            <td>{{ '快調' }}</td>
-            <td>{{ '36.5' }}</td>
-            <td>{{ '3' }}</td>
-            <td>{{ '8' }}</td>
+            <td>{{ '2022/1/10' }}</td>
+            <td>{{ 'あけましておめでとうございます。本年もよろしくお願いいたします。' }}</td>
+            <td style="text-align: center;"><a href="{{ url('/teacher/edithistory') }}">{{ '編集する' }}</a></td>
+            <td style="text-align: center;"><button type="submit" class="btn btn-danger">削除する</button></td>
         </tr>
     </table>
 

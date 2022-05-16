@@ -7,14 +7,16 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('東京小学校　体調管理システム') }}</div>
+                <div class="card-header">{{ __('東京小学校　体調管理システム<初回ログインパスワード変更画面>') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/student/firstlogin') }}">
                         @csrf
 
-                        <!-- 自動的に生徒の名前が表示されるように実装予定 -->
-                        <p>ようこそ、{{ 'Auth::user()->name' }}さん。</br>初回ログインの為、パスワードを変更してください。</p>
+                        <div class="text-center bg-warning rounded-3">
+                            <!-- 自動的に生徒の名前が表示されるように実装予定 -->
+                            <p>ようこそ、{{ 'Auth::user()->name' }}さん。</br>初回ログインの為、パスワードを変更してください。</p>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('新しいパスワード') }}</label>
