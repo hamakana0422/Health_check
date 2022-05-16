@@ -7,17 +7,19 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('東京小学校　体調管理システム') }}</div>
+                <div class="card-header">{{ __('東京小学校　体調管理システム<生徒用ログイン画面>') }}</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/student/login') }}">
                         @csrf
 
-                        <!-- 初回ログイン時のみ表示させるように実装予定 -->
-                        <p>先生から入手したIDとパスワードでログインしてください。</p>
+                        <div class="text-center bg-warning rounded-3">
+                            <p><b><u>初めてのログイン</u></b><br>先生から入手したIDとパスワードでログインしてください。</p>
+                            <p><b><u>２回目以降のログイン</u></b><br>ご自身で変更したパスワードでログインしてください。</p>
+                        </div>
 
                         <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('メールアドレス') }}</label>
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('ID(メールアドレス)') }}</label>
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
