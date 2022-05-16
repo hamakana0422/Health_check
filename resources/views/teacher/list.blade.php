@@ -26,9 +26,9 @@
     </div>
 
     <div class="gap-5 col-4 mx-3">
-        <button type="submit" class="btn btn-primary" onclick="location.href='home'">
+        <a href="/teacher/home" class="btn btn-primary">
             {{ __('ホーム画面へ戻る') }}
-        </button>
+        </a>
     </div>
 
     <div class="text-center mt-5">
