@@ -24,13 +24,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // 以下、先生用
-Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 't_login']);
+Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 't_login']);//OK
+
+Route::post('/teacher/login', [App\Http\Controllers\UserController::class, 'f_login'])->name('teacher.login');//OK
 
 // Route::get('/teacher/login', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create']);
+Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create'])->name('teacher.create');//OK
 
-Route::post('/teacher/create', [App\Http\Controllers\UserController::class, 'insertTeacher']);
+Route::post('/teacher/create', [App\Http\Controllers\UserController::class, 'insertTeacher']);//OK
 
 Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);
 
@@ -41,7 +43,9 @@ Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_log
 
 Route::post('/student/login',[App\Http\Controllers\UserController::class, 'f_login']);//OK
 
-Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
+Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'student_f_login']);
+
+Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
 
 Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, '']);
 
