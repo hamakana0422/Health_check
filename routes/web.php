@@ -52,3 +52,16 @@ Route::get('/student/firstlogin', function () {
 Route::get('/student/edit', function () {
     return view('student/edit');
 });
+
+
+Route::get('/test', function () {
+    return view('student/manage');
+});
+
+Route::get('/test1', function () {
+    return view('student/news');
+});
+
+Route::get('/test2', function () {
+    return view('student/reportdelete');
+});
