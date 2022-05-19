@@ -16,11 +16,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // 以下、先生用
-Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 't_login']);
+Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 't_login']);//OK
+
+Route::post('/teacher/login', [App\Http\Controllers\UserController::class, 'f_login'])->name('teacher.login');//OK
 
 // Route::get('/teacher/login', [App\Http\Controllers\HomeController::class, 'index']);
 
-Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create']);
+Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create'])->name('teacher.create');//OK
+
+Route::post('/teacher/create', [App\Http\Controllers\UserController::class, 'insertTeacher']);//OK
 
 Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);
 
@@ -55,11 +59,15 @@ Route::get('/teacher/account', function() {
 }); // 2022/5/15 下村追記 6-1.アカウント作成／編集画面(先生用)用
 
 // 以下、生徒用
-Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);
+Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);//OK
 
-//Route::post('/student/login',[App\Http\Controllers\Auth\LoginController::class, 'login']);
+Route::post('/student/login',[App\Http\Controllers\UserController::class, 'f_login']);//OK
 
-Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'f_login']);
+Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'student_f_login']);
+
+Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
+
+Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, '']);
 
 Route::get('/student/report', [App\Http\Controllers\ReportController::class, 's_report']);
 
