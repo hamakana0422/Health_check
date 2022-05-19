@@ -15,16 +15,15 @@ class AddColumnToUsersTable extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('user_type')->after('id');
-            $table->string('first_name')->after('user_type')->unique();
-            $table->string('last_name')->after('first_name');
+            $table->string('first_name')->nullable()->after('user_type')->unique();
+            $table->string('last_name')->nullable()->after('first_name');
             $table->string('first_name_kana')->nullable()->after('last_name');
             $table->string('last_name_kana')->nullable()->after('first_name_kana');
-            $table->string('gender')->after('last_name_kana');
-            $table->string('birthday')->after('gender');
-            $table->boolean('login_check')->nullable()->default(false)->after('remember_token')->change();
-
-            
+            $table->string('gender')->nullable()->after('last_name_kana');
+            table->string('birthday')->nullable()->after('gender');
+            $table->boolean('login_check')->nullable()->default(false)->after('remember_token')->change();            
         });
+        
     }
 
     /**

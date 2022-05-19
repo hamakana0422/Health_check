@@ -15,11 +15,9 @@ class CreateMessagesTable extends Migration
     {
         Schema::create('messages', function (Blueprint $table) {
             $table->id();
-            $table->integer('chat_room_id')->unique();
-            $table->bigInteger('teacher_room_id')->nullable();
-            $table->bigInteger('student_room_id')->nullable();
+            $table->integer('chat_room_id')->comment('チャット部屋番号ID');
             $table->string('body',250)->comment('文字数は最大２５０字まで');
-            $table->bigInteger('create_user_id');
+            $table->bigInteger('create_user_id')->comment('メッセージ作成者ID');
             $table->boolean('delete_flg')->nullable();
             $table->timestamp('deleted_at')->nullable();
             $table->timestamps();
