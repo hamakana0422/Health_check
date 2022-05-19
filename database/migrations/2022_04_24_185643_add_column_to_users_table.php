@@ -20,7 +20,7 @@ class AddColumnToUsersTable extends Migration
             $table->string('first_name_kana')->nullable()->after('last_name');
             $table->string('last_name_kana')->nullable()->after('first_name_kana');
             $table->string('gender')->nullable()->after('last_name_kana');
-            table->string('birthday')->nullable()->after('gender');
+            $table->string('birthday')->nullable()->after('gender');
             $table->boolean('login_check')->nullable()->default(false)->after('remember_token')->change();            
         });
         
