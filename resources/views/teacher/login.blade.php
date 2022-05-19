@@ -10,7 +10,7 @@
                 <div class="card-header">{{ __('東京小学校　体調管理システム<ログイン画面>') }}</div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{  route('teacher.login') }}">
+                    <form method="POST" action="{{ url('/teacher/login') }}">
                         @csrf
 
                         <div class="row mb-3">
@@ -33,12 +33,6 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                <!-- 濱田追加分 -->
-                                @if(isset($message))
-                                <div class = "">{{ $message }}</div>
-                                @endif
-                                <!-- 追加分おわり -->
-
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -52,10 +46,10 @@
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('ログイン') }}
                                 </button>
-                                <!-- 以下、subnitではなく単なる画面遷移のaタグに変更してます -->
-                                <a href="{{ route('teacher.create')}}"><button type="button" class="btn btn-secondary" style="position:relative;left:36.5px;">
-                                    {{ __('新規アカウント作成') }} 
-                                </button></a>
+
+                                <button type="submit" class="btn btn-secondary" style="position:relative;left:36.5px;">
+                                    {{ __('新規アカウント作成') }}
+                                </button>
                             </div>
                         </div>
                     </form>
