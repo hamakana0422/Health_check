@@ -41,4 +41,18 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    public function s_login()
+    {
+        return view('student.login');
+    }
+
+    public function login(Request $request)
+    {
+        $login_user = User::where('email', $request->email)->first();
+        if ($login_user->login_check) {
+            return redirect('/student/home'); //true（ログインしたことがある。ホーム画面へ）
+        }
+        return redirect('student/'); //faulse（ログインしたことがないのでパスワード変更画面へ）
+
+    }
 }
