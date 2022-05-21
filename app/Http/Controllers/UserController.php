@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
@@ -22,15 +23,11 @@ class UserController extends Controller
     }
 
     //先生
-    public function t_login()
+    public function login_form()
     {
         return view('teacher.login');
     }
 
-    // public function t_create()
-    // {
-    //     return view('teacher.create');
-    // }
 
     public function t_create(Request $request)
     {
@@ -55,9 +52,43 @@ class UserController extends Controller
 
     }
 
-    public function registerstudent()
+    public function t_login(Request $request)
+    {
+        $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
+      
+        $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
+        if ($result){
+            
+            return redirect('teacher/home');
+        } 
+            $message = "パスワードが間違っています";
+            return view('teacher.login',compact('message'));
+    }//OK
+ 
+    public function create_form()
     {
         return view('teacher.registerforstudent');
+    
+    }
+
+    public function registerstudent(Request $request)
+    {
+        //【todo/Validation】
+        User::create([
+            'user_type' => 1,
+            'first_name' => $request->first_name,
+            'last_name'=> $request->last_name,
+            'first_name_kana' => $request->first_name_kana,
+            'last_name_kana' => $request->last_name_kana,
+            'gender' => $request->gender,
+            'birthday' => $request->birthdar,
+            'email'=> $request->email,
+            'password'=> Hash::make($request->password)
+
+        ]);
+         
+        return redirect('teacher/home');
+
     }
 
     public function t_edit()
@@ -74,21 +105,26 @@ class UserController extends Controller
 
     //ログイン画面で先生か生徒か、初回ログインか２回目以降かの判別をする→生徒と先生のログイン画面は元々違うので、
     //
-    public function f_login(Request $request)
+    public function login_check(Request $request)
     {
-        $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
-      
+        $login_user = User::where('email', $request->email)->first(['id','login_check','first_name','last_name','password']); //２件以上のレコードがある場合はget○
+        // dd($login_user);
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
         if ($result){
+
+            $id = $request->session()->put('id', $login_user->id);
+        
             if ($login_user->login_check === 0) { //issetではNULLのみfalse  空文字・0・false全てtrueになる→!issetはNULLのみtrue それ以外はfalse
-                return redirect('/student/firstlogin'); //（ログインチェックがtrueじゃなければ。パスワード変更画面へ）
+                
+                return redirect()->route('student.firstlogin')->with(compact('login_user')); //（ログインチェックがtrueじゃなければ。パスワード変更画面へ）
+           
             }else if ($login_user->login_check === 1) {
                 return view('student.home'); //（ログインチェックがfaulseでない→trueであればhome画面へ）
             }
             
         } 
             $message = "パスワードが間違っています";
-            return view('teacher.login',compact('message'));
+            return redirect('student/login',compact('message'));
 
         
         //メールアドレスとパスワードが一致するかどうかを判別し、一致しなければ【ログインIDもしくはパスワードが違います】
@@ -96,10 +132,28 @@ class UserController extends Controller
 
     } 
 
+    
+
     public function student_f_login()
     {
         return view('student/firstlogin');
+
     }
+
+    public function change_pass(Request $request)
+    {
+        $id = $request->session()->get('id'); //セッションIDを取得
+        $login_user = User::where('id', $id)->first(['id','login_check','first_name','last_name','password']);
+        $login_user->password = Hash::make($request->password);
+        $login_user->login_check = 1;
+        $login_user->save();
+
+        return redirect('student/home');
+
+    }
+
+
+
     public function s_edit()
     {
         return view('student.edit');
