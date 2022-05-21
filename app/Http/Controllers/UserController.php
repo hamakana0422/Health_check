@@ -43,5 +43,9 @@ class UserController extends Controller
         return view('student.edit');
     }
 
-
+    public function s_store(Request $request)
+    {
+        dd($request);
+    }
 }
+

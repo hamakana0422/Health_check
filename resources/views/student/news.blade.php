@@ -1,11 +1,11 @@
-<!-- 1.生徒用お知らせ全文観覧画面 -->
+<!-- 10-2.生徒用お知らせ全文観覧画面 -->
 
 @extends('layouts.app')
 
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-4">
+        <div class="col-md-5">
             <div class="card">
             <div class="card-header">{{ __('東京小学校　体調管理システム') }}</div>
                 <div class="card-body">
