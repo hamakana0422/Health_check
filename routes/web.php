@@ -81,3 +81,10 @@ Route::get('/student/home', function() {
 // チャット画面
 Route::get('chat', [App\Http\Controllers\MessageController::class, 'chat']);
  // 2022/5/16 住吉Route変更
+
+
+
+
+ Route::post('/test', function() {
+    return "通信OK";
+});
