@@ -1,4 +1,4 @@
-<!-- 1.生徒用ログイン画面 -->
+<!-- 1.先生用ログイン画面 -->
 
 @extends('layouts.app')
 
@@ -49,8 +49,11 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('ログイン') }}
+                                    ログイン
                                 </button>
+                                <a class="btn btn-primary" href="{{ route('register') }}">
+                                    新規アカウント作成
+                                </a>
                             </div>
                         </div>
                     </form>
