@@ -77,6 +77,38 @@ Route::get('/student/home', function() {
 }); // 2022/5/15 下村追記 4.生徒用ホーム画面用
 
 
+
+Route::get('/student/edit', function () {
+    return view('student/edit');
+});
+
+//中武追加 8-1体調管理報告画面用
+
+Route::get('/test', function () {
+    return view('student/manage');
+});
+Route::post('/student/test',[App\Http\Controllers\UserController::class,'s_store']);
+
+//中武追加 10-2お知らせ文一覧画面用【生徒用】
+Route::get('/test1', function () {
+    return view('student/news');
+});
+
+//中武追加 8-2報告情報編集画面.【生徒用】
+Route::get('/test2', function () {
+    return view('student/reportdelete');
+});
+
+//中武追加 8-3報告情報編集画面.【生徒用】
+Route::get('/test3', function () {
+    return view('student/report');
+});
+
+//中武追加 10-1お知らせ文一覧画面.【生徒用】
+Route::get('/test4', function () {
+    return view('student/newslist');
+});
+
 // チャット画面
 Route::get('chat', [App\Http\Controllers\MessageController::class, 'chat']);
  // 2022/5/16 住吉Route変更
