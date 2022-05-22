@@ -1,28 +1,34 @@
-console.log("ok");
 $(function () {
-    // submitボタンがクリックされたとき
-    $('.submit-button').onclick(function () {
 
+    // クラスではなくIDでしたので修正しました
+    $('#submit-button').click(function () {
         $.ajax({
-            url: 'http://127.0.0.1:8000/test',
-            type: 'POST',
-            dataType: "json",
-            timeout: 10000
-        })
-        .done(function(data){
-            alert('通信OK');
-            alert(data);
-        })
+    
+            // formと同じでrestでのやりとりはトークン必須なので追加しました。
+                headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+    
+            // apiじゃないと違和感があるので、好みの問題ですが直しました。
+                url: '/api/chat2',
+                type: 'POST',
+                data: {msg:'ok'},
+                dataType: "json",
+                timeout: 100000
+                })
+                .done(function(data){
+            // アラートは削除するの手間なのでログで確認しました。
+                console.info("成功");
+                console.info(data);
+                })
+    
+            // 現状のコントローラーではうまくやりとりができないので、結果失敗になりこちらに流れてきます。
+            .fail(function (jqXHR, textStatus, errorThrown) {
+                // 通信失敗時の処理
+                alert('ファイルの取得に失敗しました。');
+                console.log("ajax通信に失敗しました");
+                console.log("jqXHR          : " + jqXHR.status); // HTTPステータスが取得
+                console.log("textStatus     : " + textStatus);    // タイムアウト、パースエラー
+                console.log("errorThrown    : " + errorThrown.message); // 例外情報
+                console.log("URL            : " + url);
+            });
+        });
     });
-});
-
-
-
-
-
-
-
-// public function index()
-// {
-//   return response()->json(['body' => 'こんにちは', 'chat_room_id' => '1', 'create_user_id' => '2']);
-// }

@@ -4,11 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -85,6 +80,6 @@ Route::get('chat', [App\Http\Controllers\MessageController::class, 'chat']);
 
 
 
- Route::post('/test', function() {
-    return "通信OK";
-});
+// Route::post('/api/chat', function() {
+//     return "通信OK";
+// });

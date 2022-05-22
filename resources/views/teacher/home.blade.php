@@ -27,7 +27,7 @@
                         <!-- @guest
                             @if (Route::has('login')) -->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/teacher/edit') }}">{{ __('アカウント作成／編集') }}</a>
+                                    <a class="nav-link" href="{{ url('/teacher/account') }}">{{ __('アカウント作成／編集') }}</a>
                                 </li>
                             <!-- @endif -->
                             <li class="nav-item">

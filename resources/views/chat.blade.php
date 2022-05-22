@@ -12,18 +12,6 @@
                 @include('components.chat')
                 @include('components.chat')
                 @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
-                @include('components.chat')
             </div>
         </div>
     </div>
@@ -31,7 +19,7 @@
 
 <div class="comment-container row justify-content-center">
     <div class="input-group comment-area">
-        <textarea class="form-control" placeholder="input massage" aria-label="With textarea"></textarea>
+        <textarea id="msg" class="form-control" placeholder="input massage" aria-label="With textarea"></textarea>
         <button id="submit-button" type="input-group-prepend button" class="btn btn-outline-primary comment-btn">Submit</button>
     </div>
 </div>
