@@ -16,7 +16,7 @@
                         <div class="text-center bg-warning rounded-3">
                             <!-- 自動的に生徒の名前が表示されるように実装予定 -->
 
-                            <p>ようこそ、{{ '$login_user->last_name' }} さん。</br>初回ログインの為、パスワードを変更してください。</p>
+                            <p>ようこそ {{ session('login_user') }}さん。</br>初回ログインの為、パスワードを変更してください。</p>
                         </div>
 
                         <div class="row mb-3">
@@ -41,6 +41,7 @@
                             </div>
                         </div>
 
+                       
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">

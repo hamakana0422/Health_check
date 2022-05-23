@@ -110,21 +110,23 @@ class UserController extends Controller
         $login_user = User::where('email', $request->email)->first(['id','login_check','first_name','last_name','password']); //２件以上のレコードがある場合はget○
         // dd($login_user);
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
-        if ($result){
+        if ($result) {
 
-            $id = $request->session()->put('id', $login_user->id);
-        
+            $request->session()->put('id', $login_user->id);
             if ($login_user->login_check === 0) { //issetではNULLのみfalse  空文字・0・false全てtrueになる→!issetはNULLのみtrue それ以外はfalse
                 
-                return redirect()->route('student.firstlogin')->with(compact('login_user')); //（ログインチェックがtrueじゃなければ。パスワード変更画面へ）
-           
+                $name = $login_user->last_name;
+                // dd($name); 
+                return redirect()->route('student.firstlogin')->with('login_user', $name); //（ログインチェックがtrueじゃなければ。パスワード変更画面へ）
+            
             }else if ($login_user->login_check === 1) {
-                return view('student.home'); //（ログインチェックがfaulseでない→trueであればhome画面へ）
+                return redirect('student/home'); //（ログインチェックがfaulseでない→trueであればhome画面へ）
             }
             
         } 
+
             $message = "パスワードが間違っています";
-            return redirect('student/login',compact('message'));
+            return view('student.login',compact('message'));
 
         
         //メールアドレスとパスワードが一致するかどうかを判別し、一致しなければ【ログインIDもしくはパスワードが違います】
@@ -132,12 +134,9 @@ class UserController extends Controller
 
     } 
 
-    
-
     public function student_f_login()
-    {
+    {   
         return view('student/firstlogin');
-
     }
 
     public function change_pass(Request $request)
