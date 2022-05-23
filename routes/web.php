@@ -28,7 +28,7 @@ Route::post('/teacher/create', [App\Http\Controllers\UserController::class, 'ins
 
 Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);
 
-Route::get('/teacher/report', [App\Http\Controllers\ReportController::class, 't_report']);
+Route::get('/teacher/report/{id}', [App\Http\Controllers\ReportController::class, 't_report']);
 
 Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
 
@@ -48,9 +48,8 @@ Route::get('/teacher/home', function() {
     return view ('teacher/home');
 }); // 2022/5/15 下村追記 4.先生用ホーム画面用
 
-Route::get('/teacher/list', function() {
-    return view ('teacher/list');
-}); // 2022/5/15 下村追記 5-1.生徒一覧画面用
+Route::get('/teacher/list', [App\Http\Controllers\ListController::class, 't_list']);
+// 2022/5/15 下村追記 5-1.生徒一覧画面用
 
 // 2022/5/16 住吉 5-2.生徒体調確認画面用 Route文変更
 

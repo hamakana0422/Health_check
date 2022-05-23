@@ -26,14 +26,14 @@
     </div>
 
     <div class="gap-5 col-4 mx-3">
-        <button type="submit" class="btn btn-primary" onclick="location.href='home'">
+        <a href="/teacher/home" class="btn btn-primary">
             {{ __('ホーム画面へ戻る') }}
-        </button>
+        </a>
     </div>
 
     <!-- "田中学"の部分はレコードより取得できるように実装すること -->
     <div class="text-center mt-5">
-        <h3>田中学さんの体調確認画面です。</h3>
+            <h3>{{$user->last_name}}{{$user->first_name}}さんの体調確認画面です。</h3>
     </div>
 
     <table class="table table-bordered mt-5">
@@ -45,13 +45,15 @@
             <th>睡眠時間</th>
         </tr>
         <!-- 下記波括弧部分については、レコードから情報を取得できるようにすること -->
+        @foreach ($reports as $report)
         <tr>
-            <td>{{ '2022/5/1' }}</td>
-            <td>{{ '快調' }}</td>
-            <td>{{ '36.5' }}</td>
-            <td>{{ '3' }}</td>
-            <td>{{ '8' }}</td>
+            <td>{{ $report->created_at }}</td>
+            <td>{{ $report->condition }}</td>
+            <td>{{ $report->temperature }}</td>
+            <td>{{ $report->meal }}</td>
+            <td>{{ $report->sleep }}</td>
         </tr>
+        @endforeach
     </table>
 
 </div>
