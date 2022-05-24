@@ -45,15 +45,17 @@
             <th></th>
         </tr>
         <!-- 下記波括弧部分(姓～メールアドレス)については、レコードから情報を取得できるようにすること -->
+        @foreach ($users as $user)
         <tr>
-            <td>{{ '田中(タナカ)' }}</td>
-            <td>{{ '学(マナブ)' }}</td>
-            <td>{{ '男' }}</td>
-            <td>{{ '1990/5/5' }}</td>
-            <td>{{ 'example@email.com' }}</td>
-            <td style="text-align: center;"><a href="{{ url('/teacher/report') }}">{{ '体調確認画面へ' }}</a></td>
+            <td>{{ $user->last_name }}({{ $user->last_name_kana }})</td>
+            <td>{{ $user->first_name }}({{ $user->first_name_kana }})</td>
+            <td>{{ $user->gender }}</td>
+            <td>{{ $user->birthday }}</td>
+            <td>{{ $user->email }}</td>
+            <td style="text-align: center;"><a href="{{ url('/teacher/report') }}/{{ $user->id }}">{{ '体調確認画面へ' }}</a></td>  <!--urlの/2は生徒idが入るようにする-->
             <td style="text-align: center;"><button type="submit" class="btn btn-danger">{{ __('アカウント削除') }}</button></td>
         </tr>
+        @endforeach
     </table>
 
 </div>
