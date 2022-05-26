@@ -25,9 +25,6 @@
             @yield('content')
         </main>
     </div>
-    <script src="{{ asset('js/jquery.js') }}"></script>
-    <script src="{{ asset('js/chat.js') }}">
-        
-    </script>
+
 </body>
 </html>

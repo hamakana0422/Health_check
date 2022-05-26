@@ -2,6 +2,7 @@ $(function () {
 
     // クラスではなくIDでしたので修正しました
     $('#submit-button').click(function () {
+        var message = $('#msg').val()
         $.ajax({
     
             // formと同じでrestでのやりとりはトークン必須なので追加しました。
@@ -10,15 +11,26 @@ $(function () {
             // apiじゃないと違和感があるので、好みの問題ですが直しました。
                 url: '/api/chat2',
                 type: 'POST',
-                data: {msg:'ok'},
+                data: {msg: message},
                 dataType: "json",
                 timeout: 100000
                 })
                 .done(function(data){
             // アラートは削除するの手間なのでログで確認しました。
-                console.info("成功");
-                console.info(data);
-                })
+
+                    var html = `
+                        <div class="media comment-visible">
+                            <div class="media-body comment-body">
+                                <div class="row">
+                                    <span class="comment-body-user" id="name">${data.body}</span>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+
+                $("#test").append(html);
+                
+            })
     
             // 現状のコントローラーではうまくやりとりができないので、結果失敗になりこちらに流れてきます。
             .fail(function (jqXHR, textStatus, errorThrown) {
