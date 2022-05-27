@@ -81,7 +81,7 @@ class UserController extends Controller
             'first_name_kana' => $request->first_name_kana,
             'last_name_kana' => $request->last_name_kana,
             'gender' => $request->gender,
-            'birthday' => $request->birthdar,
+            'birthday' => $request->birthday,
             'email'=> $request->email,
             'password'=> Hash::make($request->password)
 
