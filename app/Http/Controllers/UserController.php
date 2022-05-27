@@ -54,6 +54,7 @@ class UserController extends Controller
 
     public function t_login(Request $request)
     {
+
         $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
       
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
@@ -94,6 +95,12 @@ class UserController extends Controller
     public function t_edit()
     {
         return view('teacher.edit');
+    }
+
+    public function account_destroy(Request $request)
+    {   
+        $user = User::where('id','=',$request->id)->delete(); 
+        return redirect('/teacher/list');
     }
 
     //生徒

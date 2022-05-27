@@ -15,5 +15,14 @@ class ListController extends Controller
         return view('teacher.list',['users' => $users]);
     }
 
+    public function account_destroy(Request $request)
+    {
+        $id = $request->session('id');//セッションに保存されたidを取得
+        $user = User::where('id', $id)->first();
+        dd($user);
+        $user->delete();
+        return redirect('teacher/list');
+    }
+    
 
 }
