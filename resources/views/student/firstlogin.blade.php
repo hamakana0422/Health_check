@@ -11,6 +11,7 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/student/firstlogin') }}">
+                        @method('PUT')
                         @csrf
 
                         <div class="text-center bg-warning rounded-3">
