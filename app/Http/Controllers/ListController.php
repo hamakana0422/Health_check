@@ -19,7 +19,6 @@ class ListController extends Controller
     {
         $id = $request->session('id');//セッションに保存されたidを取得
         $user = User::where('id', $id)->first();
-        dd($user);
         $user->delete();
         return redirect('teacher/list');
     }
