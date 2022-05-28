@@ -1,4 +1,4 @@
-<!-- 1.生徒用ログイン画面 -->
+<!-- 1.先生用ログイン画面 -->
 
 @extends('layouts.app')
 
@@ -38,6 +38,13 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
+                                <!-- 濱田追加分 パスワード誤りのエラーメッセージ-->
+                                @if(isset($message))
+                                <div class = "">{{ $message }}</div>
+                                @endif
+                                <!-- 追加分おわり -->
+
+
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -49,8 +56,11 @@
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('ログイン') }}
+                                    ログイン
                                 </button>
+                                <a class="btn btn-primary" href="{{ route('register') }}">
+                                    新規アカウント作成
+                                </a>
                             </div>
                         </div>
                     </form>
