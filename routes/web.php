@@ -27,6 +27,8 @@ Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::
 
 Route::post('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);//OK
 
+Route::get('/teacher/delete/{id}', [App\Http\Controllers\UserController::class, 'account_destroy']);
+
 Route::get('/teacher/report/{id}', [App\Http\Controllers\ReportController::class, 't_report']);
 
 Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
@@ -63,13 +65,15 @@ Route::post('/student/login',[App\Http\Controllers\UserController::class, 'login
 
 Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'student_f_login'])->name('student.firstlogin');
 
-Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
+Route::put('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
 
 // Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, '']);
 
 Route::get('/student/report', [App\Http\Controllers\ReportController::class, 's_report']);
 
-Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit']);
+Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit'])->name('student.edit');
+
+Route::post('/student/edit',[App\Http\Controllers\UserController::class, '']);
 
 Route::get('/student/home', function() {
     return view ('student/home');
@@ -95,9 +99,9 @@ Route::get('/teacher/chat', function() {
 }); // 2022/5/28 下村追記 先生用チャット画面用
 
 
-Route::get('/student/edit', function () {
-    return view('student/edit');
-});
+// Route::get('/student/edit', function () {
+//     return view('student/edit');
+// });
 
 //中武追加 8-1体調管理報告画面用
 

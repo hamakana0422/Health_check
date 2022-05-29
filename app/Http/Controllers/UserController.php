@@ -54,6 +54,7 @@ class UserController extends Controller
 
     public function t_login(Request $request)
     {
+
         $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
       
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
@@ -96,6 +97,12 @@ class UserController extends Controller
         return view('teacher.edit');
     }
 
+    public function account_destroy(Request $request)
+    {   
+        $user = User::where('id','=',$request->id)->delete(); 
+        return redirect('/teacher/list');
+    }
+
     //生徒
     public function s_login()
     {
@@ -112,7 +119,9 @@ class UserController extends Controller
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
         if ($result) {
 
-            $request->session()->put('id', $login_user->id);
+            session(['id' => $login_user->id,
+                     'email'=> $login_user->email
+                    ]);
             if ($login_user->login_check === 0) { //issetではNULLのみfalse  空文字・0・false全てtrueになる→!issetはNULLのみtrue それ以外はfalse
                 
                 $name = $login_user->last_name;
@@ -146,16 +155,19 @@ class UserController extends Controller
         $login_user->password = Hash::make($request->password);
         $login_user->login_check = 1;
         $login_user->save();
-
+        
         return redirect('student/home');
-
+    
     }
 
 
+    public function s_edit()//ただの画面遷移なのでRequestはつけない
+    {   
+        $id = session('id');//セッションに保存されたidを取得
+        $user_email = User::where('id', $id)->first('email');
+        $user_email = $user_email->email;
+        return view('student.edit',compact('user_email'));
 
-    public function s_edit()
-    {
-        return view('student.edit');
     }
 
     public function s_store(Request $request)
