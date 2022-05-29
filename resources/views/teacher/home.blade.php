@@ -27,18 +27,20 @@
                         <!-- @guest
                             @if (Route::has('login')) -->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/teacher/edit') }}">{{ __('アカウント作成／編集') }}</a>
+                                    <a class="nav-link" href="{{ url('/teacher/account') }}">{{ __('アカウント作成／編集') }}</a>
                                 </li>
                             <!-- @endif -->
-                            <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        {{ __('ログアウト') }}
-                                    </a>
+                                 <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('logout') }}">{{ __('ログアウト') }}</a></li>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    <!-- <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('ログアウト') }}
+                                    </a> -->
+    
+                                    <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
-                                    </form>
-                            </li>
+                                    </form>   ログアウトボタンが押せなかったため、ログアウトをaタグ使用に替えています。5/29濵田-->  
+                                 </li>
                         @endguest
                     </ul>
                 </div>

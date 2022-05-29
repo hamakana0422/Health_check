@@ -23,16 +23,38 @@ class UserController extends Controller
     }
 
     //先生
-    public function login_form()
-    {
+    public function login_form(Request $request)
+    {   
+        // $request->session()->flush();
+        $check = $request->session()->get('users');
+        if(isset($check)){
+        return redirect('teacher/home');
+ 
+    }
+        // $request->session()->flush();
         return view('teacher.login');
     }
 
 
     public function t_create(Request $request)
-    {
+    {   
+        
+        if(is_null($request->session()->get('users'))){
+        return redirect('teacher/login');
+        }
+
         return view('teacher.create');
     
+    }
+
+    public function t_home(Request $request)
+    {
+        if(is_null($request->session()->get('users'))){
+            return redirect('teacher/login');
+        }
+
+         return view('teacher.home');
+        
     }
 
     // 先生の会員登録
@@ -54,12 +76,13 @@ class UserController extends Controller
 
     public function t_login(Request $request)
     {
-
         $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
       
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
         if ($result){
-            
+
+            $request->session()->put('users', $request->email);
+            // dd($request->session);
             return redirect('teacher/home');
         } 
             $message = "パスワードが間違っています";
@@ -71,6 +94,14 @@ class UserController extends Controller
         return view('teacher.registerforstudent');
     
     }
+
+
+    public function t_logout(Request $request)
+    {   
+        $request->session()->flush();
+        return redirect('teacher/login');
+ 
+    }//OK
 
     public function registerstudent(Request $request)
     {
@@ -92,9 +123,15 @@ class UserController extends Controller
 
     }
 
-    public function t_edit()
-    {
-        return view('teacher.edit');
+    public function t_edit(Request $request)
+    {   
+        if(is_null($request->session()->get('users'))){
+            return redirect('teacher/login');
+        }
+
+        $user_email = $request->session()->get('users');
+        return view('teacher.edit',compact('user_email'));
+
     }
 
     public function account_destroy(Request $request)
