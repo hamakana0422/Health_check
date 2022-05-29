@@ -22,7 +22,12 @@ $(function () {
                         <div class="media comment-visible">
                             <div class="media-body comment-body">
                                 <div class="row">
-                                    <span class="comment-body-user" id="name">${data.body}</span>
+                                    <div class="flex-row">
+                                        <span class="comment-body-user" id="user_name">田中学</span>
+                                        <span>　</span>
+                                        <span class="comment-body-user small" id="created_at">05-05 12:00</span>
+                                    </div>
+                                    <span class="comment-body-user pb-3" id="body">${data.body}</span>
                                 </div>
                             </div>
                         </div>

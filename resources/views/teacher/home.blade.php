@@ -57,7 +57,7 @@
         <button type="submit" class="btn btn-primary" onclick="location.href='notification'">
             {{ __('お知らせ投稿') }}
         </button>
-        <button type="submit" class="btn btn-primary" onclick="location.href='../chat'">
+        <button type="submit" class="btn btn-primary" onclick="location.href='../teacher/chat'">
             {{ __('生徒とチャット') }}
         </button>
     </div>
