@@ -39,9 +39,9 @@ class UserController extends Controller
     public function t_create(Request $request)
     {   
         
-        if(is_null($request->session()->get('users'))){
-        return redirect('teacher/login');
-        }
+        // if(is_null($request->session()->get('users'))){
+        // return redirect('teacher/login');
+        // }
 
         return view('teacher.create');
     
@@ -89,8 +89,12 @@ class UserController extends Controller
             return view('teacher.login',compact('message'));
     }//OK
  
-    public function create_form()
-    {
+    public function create_form(Request $request)
+    {   
+        if(is_null($request->session()->get('users'))){
+            return redirect('teacher/login');
+        }
+
         return view('teacher.registerforstudent');
     
     }
@@ -106,6 +110,7 @@ class UserController extends Controller
     public function registerstudent(Request $request)
     {
         //【todo/Validation】
+
         User::create([
             'user_type' => 1,
             'first_name' => $request->first_name,
@@ -132,6 +137,18 @@ class UserController extends Controller
         $user_email = $request->session()->get('users');
         return view('teacher.edit',compact('user_email'));
 
+    }
+
+    public function t_update(Request $request)
+    {
+        $email = $request->session()->get('users'); //セッションに格納されたキー'user'の値を取得
+        $login_user = User::where('email', $email)->first(['id','login_check','first_name','last_name','password']);
+        $login_user->email = $request->email;
+        $login_user->password = Hash::make($request->password);
+        $login_user->save();
+        
+        return redirect('teacher/home');
+    
     }
 
     public function account_destroy(Request $request)

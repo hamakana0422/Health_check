@@ -3,8 +3,8 @@
 @extends('layouts.app')
 
 @section('content')
-<form method="POST" action="{{ url('/teacher/home') }}">
-    @csrf
+<!-- <form method="POST" action="{{ url('/teacher/home') }}"> -->
+    <!-- @csrf -->
 <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -35,11 +35,11 @@
 
                                     <!-- <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
                                         {{ __('ログアウト') }}
-                                    </a> -->
-    
+                                    </a>   -->
                                     <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                         @csrf
-                                    </form>   ログアウトボタンが押せなかったため、ログアウトをaタグ使用に替えています。5/29濵田-->  
+                                    </form>    -->
+                                    <!--ログアウトボタンが押せなかったため、ログアウトをaタグ使用に替えています。5/29濵田-->  
                                  </li>
                         @endguest
                     </ul>

@@ -38,7 +38,7 @@ Route::get('/teacher/report/{id}', [App\Http\Controllers\ReportController::class
 
 Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
 
-Route::put('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
+Route::put('/teacher/edit', [App\Http\Controllers\UserController::class, 't_update']);
 
 Route::get('/teacher/notification', function() {
     return view ('teacher/notification');

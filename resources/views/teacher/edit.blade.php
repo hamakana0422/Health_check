@@ -11,6 +11,7 @@
 
                 <div class="card-body">
                     <form method="POST" action="{{ url('/teacher/edit') }}">
+                        @method('PUT')
                         @csrf
 
                         <div class="row mb-3">
