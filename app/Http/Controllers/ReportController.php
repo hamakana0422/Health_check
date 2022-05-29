@@ -22,6 +22,11 @@ class ReportController extends Controller
         ]);
     }
 
+    public function s_manage()
+    {
+        return view('student.manage');
+    }
+
     public function t_list()
     {
         return view('teacher.list');
@@ -30,5 +35,24 @@ class ReportController extends Controller
     public function s_report()
     {
         return view('student.report');
+    }
+
+    public function registerReport(Request $request)
+    {
+
+        return view('student.home');
+    }
+    public function s_instert(Request $request)
+    {
+        $user = new Report();
+$user->day = $request->day;
+$user->condition = $request->condition;
+$user->temperature = $request->temperature;
+$user->sleep = $request->sleep;
+$user->meal = $request->meal;
+$user->user_id = $request->user_id;
+$user->save();
+        //Report::create($request->all());
+        return redirect('/student/home')->with('flash_message', '');
     }
 }

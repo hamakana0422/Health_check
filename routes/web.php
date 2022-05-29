@@ -76,9 +76,11 @@ Route::put('/student/firstlogin', [App\Http\Controllers\UserController::class, '
 
 Route::get('/student/report', [App\Http\Controllers\ReportController::class, 's_report']);
 
+Route::post('/student/report', [App\Http\Controllers\ReportController::class, 'registerReport']);
+
 Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit'])->name('student.edit');
 
-Route::post('/student/edit',[App\Http\Controllers\UserController::class, '']);
+//Route::post('/student/edit',[App\Http\Controllers\UserController::class, '']);
 
 Route::get('/student/home', function() {
     return view ('student/home');
@@ -92,10 +94,9 @@ Route::get('/student/home', function() {
 
 //中武追加 8-1体調管理報告画面用
 
-Route::get('/test', function () {
-    return view('student/manage');
-});
-Route::post('/student/test',[App\Http\Controllers\UserController::class,'s_store']);
+Route::get('/student/manage', [App\Http\Controllers\ReportController::class, 's_manage']);
+
+Route::post('/student/manage',[App\Http\Controllers\ReportController::class,'s_instert']);
 
 //中武追加 10-2お知らせ文一覧画面用【生徒用】
 Route::get('/test1', function () {

@@ -15,6 +15,7 @@ class AddColumnToReportsTable extends Migration
     {
         Schema::table('reports', function (Blueprint $table) {
             $table->string('temperature')->change();
+            $table->date('day');
         });
     }
 
@@ -26,7 +27,8 @@ class AddColumnToReportsTable extends Migration
     public function down()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->dropColumn('temperature');
+        $table->dropColumn('day');
         });
     }
+
 }

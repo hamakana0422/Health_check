@@ -69,7 +69,7 @@
     </div>
 
     <div class="d-grid gap-5 col-4 mx-auto">
-        <button type="submit" class="btn btn-primary" onclick="location.href='report'">
+        <button type="submit" class="btn btn-primary" onclick="location.href='manage'">
             {{ __('体調報告画面') }}
         </button>
         <button type="submit" class="btn btn-primary" onclick="location.href='../chat'">
