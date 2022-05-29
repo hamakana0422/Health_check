@@ -3,6 +3,8 @@ $(function () {
     // クラスではなくIDでしたので修正しました
     $('#submit-button').click(function () {
         var message = $('#msg').val()
+        var chat_room_id = $('#chat_room_id').val()
+        var login_user_id = $('#login_user_id').val()
         $.ajax({
     
             // formと同じでrestでのやりとりはトークン必須なので追加しました。
@@ -11,7 +13,11 @@ $(function () {
             // apiじゃないと違和感があるので、好みの問題ですが直しました。
                 url: '/api/chat2',
                 type: 'POST',
-                data: {msg: message},
+                data: {
+                    msg: message,
+                    cid: chat_room_id,
+                    lid: login_user_id
+                    },
                 dataType: "json",
                 timeout: 100000
                 })
