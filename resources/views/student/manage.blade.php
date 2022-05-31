@@ -34,10 +34,10 @@
                             <label for="name">昨日は何回食事をとりましたか？</label></br>
                             <input type="text" name="day" size = "30">
                         </div>
-                            <button type="submit">報告する</button>
                     </form>
-                    <a href=""><button type="button">キャンセル</button></a>
-                    <a href=""><button type="button">過去に報告した内容を</br>確認/編集する</button></a>
+                    <button type="submit" class="btn btn-primary my-3">報告する</button>
+                    <a href="{{ url('/student/home') }}"><button type="button" class="btn btn-secondary">キャンセル</button></a>
+                    <a href="{{ url('/student/newslist') }}"><button type="button" class="btn btn-secondary my-2">過去に報告した内容を</br>確認/編集する</button></a>
                 </div>
             </div>
         </div>

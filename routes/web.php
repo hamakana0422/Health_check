@@ -84,6 +84,14 @@ Route::get('/student/home', function() {
     return view ('student/home');
 }); // 2022/5/15 下村追記 4.生徒用ホーム画面用
 
+Route::get('/student/newslist', function() {
+    return view ('student/newslist');
+}); 
+
+Route::get('/student/manage', function() {
+    return view ('student/manage');
+}); 
+
 
 
 // Route::get('/student/edit', function () {
