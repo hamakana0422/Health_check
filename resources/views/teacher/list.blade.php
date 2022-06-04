@@ -1,6 +1,6 @@
 <!-- 5-1.生徒一覧画面 -->
 
-@extends('layouts.app')
+@extends('layouts.teacher')
 
 @section('content')
 
@@ -32,7 +32,7 @@
             <td>{{ $user->birthday }}</td>
             <td>{{ $user->email }}</td>
             <td style="text-align: center;"><a href="{{ url('/teacher/report') }}/{{ $user->id }}">{{ '体調確認画面へ' }}</a></td>  <!--urlの/2は生徒idが入るようにする-->
-            <td style="text-align: center;"><a href="{{ url('/teacher/chat') }}">{{ 'チャット画面へ' }}</a></td>
+            <td style="text-align: center;"><a href="{{ url('/teacher/chat') }}/{{ $user->id }}">{{ 'チャット画面へ' }}</a></td>
             <td style="text-align: center;"><button type="submit" class="btn btn-danger">{{ __('アカウント削除') }}</button></td>
         </tr>
         @endforeach

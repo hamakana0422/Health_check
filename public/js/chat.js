@@ -1,8 +1,21 @@
 $(function () {
 
+    // XSS対策(サニタイジング：エスケープ処理)
+    function escapeHTML(string){
+        return string.replace(/&/g, '&lt;')
+        .replace(/</g, '&lt')
+        .replace(/>/g, '&gt')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#x27;');
+    }
+
     // クラスではなくIDでしたので修正しました
     $('#submit-button').click(function () {
         var message = $('#msg').val()
+        if(message == false){
+            alert ("メッセージを入力してください。");
+            return false;
+        }
         var chat_room_id = $('#chat_room_id').val()
         var login_user_id = $('#login_user_id').val()
         $.ajax({
@@ -24,6 +37,23 @@ $(function () {
                 .done(function(data){
             // アラートは削除するの手間なのでログで確認しました。
 
+            // 投稿日時を表示
+            let toDoubleDigits = function(num) {
+                num += "";
+                if (num.length === 1) {
+                    num = "0" + num;
+                }
+                return num;
+            };
+                let d = new Date(data.created_at);
+                let year = d.getFullYear();
+                let month = toDoubleDigits(d.getMonth() + 1);
+                let day = toDoubleDigits(d.getDate());
+                let hour = toDoubleDigits(d.getHours());
+                let minute = toDoubleDigits(d.getMinutes());
+                let second = toDoubleDigits(d.getSeconds());
+                let created_date = year + '-' + month + '-' + day + ' ' + hour + ':' + minute + ':' + second;
+
                     var html = `
                         <div class="media comment-visible">
                             <div class="media-body comment-body">
@@ -31,9 +61,9 @@ $(function () {
                                     <div class="flex-row">
                                         <span class="comment-body-user" id="user_name">田中学</span>
                                         <span>　</span>
-                                        <span class="comment-body-user small" id="created_at">05-05 12:00</span>
+                                        <span class="comment-body-user small" id="created_at">${created_date}</span>
                                     </div>
-                                    <span class="comment-body-user pb-3" id="body">${data.body}</span>
+                                    <span class="comment-body-user pb-3" id="body">${escapeHTML(data.body)}</span>
                                 </div>
                             </div>
                         </div>

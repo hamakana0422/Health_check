@@ -50,24 +50,27 @@
         <div class="chat-area">
             <div class="card">
                 <div class="card-header">チャット部屋</div>
-                <div class="card-body chat-card">
-                    <div id="test"></div>
+                    <div class="card-body chat-card">
+                        <div id="test"></div>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
 
-    <div class="comment-container row justify-content-center">
-        <div class="input-group comment-area">
-            <textarea id="msg" class="form-control" placeholder="ここにメッセージを入力(最大250文字まで)" maxlength="250" aria-label="With textarea"></textarea>
-            <button id="submit-button" type="input-group-prepend button" class="btn btn-outline-primary comment-btn">投稿する</button>
+        <div class="comment-container row justify-content-center">
+            <div class="input-group comment-area">
+                <input type="hidden" id="chat_room_id" value="{{ $chat_room_id }}">
+                <input type="hidden" id="login_user_id" value="{{ $login_user_id }}">
+                <textarea id="msg" class="form-control" placeholder="ここにメッセージを入力(最大250文字まで)" maxlength="250" aria-label="With textarea"></textarea>
+                <button id="submit-button" type="input-group-prepend button" class="btn btn-outline-primary comment-btn">投稿する</button>
+            </div>
         </div>
+
+        @endsection
+
+        @section('js')
+        <script src="{{ asset('js/chat.js') }}"></script>
+
+        @endsection
     </div>
-
-    @endsection
-
-    @section('js')
-    <script src="{{ asset('js/chat.js') }}"></script>
-
-    @endsection
 </div>
