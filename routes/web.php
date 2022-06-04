@@ -15,9 +15,7 @@ Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 'login
 
 Route::post('/teacher/login', [App\Http\Controllers\UserController::class, 't_login'])->name('teacher.login');//OK
 
-Route::get('/teacher/home', function() {
-    return view ('teacher/home');
-}); //OK
+Route::get('/teacher/home',  [App\Http\Controllers\UserController::class, 't_home']);
 
 Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create'])->name('teacher.create');//OK
 
