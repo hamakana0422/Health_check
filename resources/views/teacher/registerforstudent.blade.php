@@ -73,9 +73,9 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('性別') }}</label>
 
                             <div class="col-md-6">
-                                <label><input type="radio" name="gender" value="male">男　</label>
-                                <label><input type="radio" name="gender" value="female">女　</label>
-                                <label><input type="radio" name="gender" value="female">その他</label>
+                                <label><input type="radio" name="gender" value="男">男　</label>
+                                <label><input type="radio" name="gender" value="女">女　</label>
+                                <label><input type="radio" name="gender" value="その他">その他</label>
                             </div>
                         </div>
 
@@ -83,9 +83,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('生年月日') }}</label>
 
                             <div class="col-md-2">
-                                <label><input type="text" class="form-control" required autofocus>年　</label>
-                                <label><input type="text" class="form-control" required autofocus>月　</label>
-                                <label><input type="text" class="form-control" required autofocus>日</label>
+                                <label><input type="date" class="form-control" name="birthday" required autofocus></label>
                             </div>
                         </div>
 

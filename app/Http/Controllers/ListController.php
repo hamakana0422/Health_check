@@ -11,7 +11,7 @@ class ListController extends Controller
 
     public function t_list()
     {
-        $users = User::all();
+        $users = User::where('user_type', '=', '1')->get();
         return view('teacher.list',['users' => $users]);
     }
 
@@ -22,6 +22,6 @@ class ListController extends Controller
         $user->delete();
         return redirect('teacher/list');
     }
-    
+
 
 }
