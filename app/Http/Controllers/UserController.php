@@ -37,6 +37,12 @@ class UserController extends Controller
 
     }
 
+    public function t_home()
+    {
+        return view('teacher.home');
+
+    }
+
     // 先生の会員登録
     public function insertTeacher(Request $request)
     {
@@ -96,7 +102,10 @@ class UserController extends Controller
 
     public function t_edit()
     {
-        return view('teacher.edit');
+        $id = session('id');//セッションに保存されたidを取得
+        $user_email = User::where('id', $id)->first('email');
+        $user_email = $user_email->email;
+        return view('teacher.edit',compact('user_email'));
     }
 
     public function account_destroy(Request $request)
