@@ -1,31 +1,11 @@
 <!-- 5-2.生徒体調確認画面 -->
 
-@extends('layouts.app')
+@extends('layouts.teacher')
 
 @section('content')
 <form method="POST" action="{{ url('/teacher/report') }}">
     @csrf
-<div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/teacher/home') }}">
-                    {{ __('東京小学校　体調管理システム') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-
-    <div class="gap-5 col-4 mx-3">
+    <div class="gap-5 col-4 mx-3 py-4">
         <a href="/teacher/home" class="btn btn-primary">
             {{ __('ホーム画面へ戻る') }}
         </a>

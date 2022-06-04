@@ -84,20 +84,30 @@ Route::get('/student/list', function() {
 }); // 2022/5/28 下村追記 先生一覧画面用
 
 
+Route::get('/student/newslist', function() {
+    return view ('student/newslist');
+}); 
+
+Route::get('/student/manage', function() {
+    return view ('student/manage');
+}); 
+
 // チャット画面
 // Route::get('chat', [App\Http\Controllers\MessageController::class, 'chat']);
 // 2022/5/16 住吉Route変更
 // 2022/5/28 下村"先生用・生徒用のチャット画面を作成したので、ルーティング変更となります"
 
+// Route::get('/student/chat/{tid}/{id}', [App\Http\Controllers\HomeController::class, 'studentChat']);
 
 Route::get('/student/chat', function() {
     return view ('student/chat');
-}); // 2022/5/28 下村追記 生徒用チャット画面用
+});
+Route::get('/student/chat', [App\Http\Controllers\MessageController::class,'s_chat'])->name('message.chat');
 
 Route::get('/teacher/chat', function() {
     return view ('teacher/chat');
 }); // 2022/5/28 下村追記 先生用チャット画面用
-
+Route::get('/teacher/chat', [App\Http\Controllers\MessageController::class,'t_chat'])->name('message.chat');
 
 // Route::get('/student/edit', function () {
 //     return view('student/edit');
