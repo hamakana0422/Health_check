@@ -22,9 +22,12 @@ class ReportController extends Controller
         ]);
     }
 
-    public function s_manage()
+    public function s_manage(Request $request)
     {
-        return view('student.manage');
+        $id = $request->session()->get('id'); //セッションIDを取得
+        return view('student.manage',[
+            'id' => $id,
+        ]);
     }
 
     public function t_list()
@@ -39,20 +42,18 @@ class ReportController extends Controller
 
     public function registerReport(Request $request)
     {
-
         return view('student.home');
     }
     public function s_instert(Request $request)
     {
         $user = new Report();
-$user->day = $request->day;
-$user->condition = $request->condition;
-$user->temperature = $request->temperature;
-$user->sleep = $request->sleep;
-$user->meal = $request->meal;
-$user->user_id = $request->user_id;
-$user->save();
-        //Report::create($request->all());
+        $user->day = $request->day;
+        $user->condition = $request->condition;
+        $user->temperature = $request->temperature;
+        $user->sleep = $request->sleep;
+        $user->meal = $request->meal;
+        $user->user_id = $request->user_id;
+        $user->save();
         return redirect('/student/home')->with('flash_message', '');
     }
 }

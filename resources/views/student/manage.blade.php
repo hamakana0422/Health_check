@@ -4,7 +4,7 @@
 
 @section('content')
 <form method="POST" action="{{ url('/student/manage') }}">
-    <input type="hidden" name="user_id" value="1">
+    <input type="hidden" name="user_id" value="{{ $id }}">
     @csrf
 <div id="app">
     <div class="container">
