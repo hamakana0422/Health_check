@@ -9,8 +9,10 @@ use Illuminate\Contracts\Hashing\Hasher;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
-{   
+{
     //コンストラクタ・・認証機能をUserControllerで有効にするためのコード？
+    
+
 
     public function __construct()
     {
@@ -19,7 +21,7 @@ class UserController extends Controller
 
     public function index()
     {
-        
+
     }
 
     //先生
@@ -32,7 +34,13 @@ class UserController extends Controller
     public function t_create(Request $request)
     {
         return view('teacher.create');
-    
+
+    }
+
+    public function t_home()
+    {
+        return view('teacher.home');
+
     }
 
     // 先生の会員登録
@@ -56,20 +64,20 @@ class UserController extends Controller
     {
 
         $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
-      
+
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
         if ($result){
-            
+
             return redirect('teacher/home');
-        } 
+        }
             $message = "パスワードが間違っています";
             return view('teacher.login',compact('message'));
     }//OK
- 
+
     public function create_form()
     {
         return view('teacher.registerforstudent');
-    
+
     }
 
     public function registerstudent(Request $request)
@@ -87,19 +95,22 @@ class UserController extends Controller
             'password'=> Hash::make($request->password)
 
         ]);
-         
+
         return redirect('teacher/home');
 
     }
 
     public function t_edit()
     {
-        return view('teacher.edit');
+        $id = session('id');//セッションに保存されたidを取得
+        $user_email = User::where('id', $id)->first('email');
+        $user_email = $user_email->email;
+        return view('teacher.edit',compact('user_email'));
     }
 
     public function account_destroy(Request $request)
-    {   
-        $user = User::where('id','=',$request->id)->delete(); 
+    {
+        $user = User::where('id','=',$request->id)->delete();
         return redirect('/teacher/list');
     }
 
@@ -120,32 +131,32 @@ class UserController extends Controller
         if ($result) {
 
             session(['id' => $login_user->id,
-                     'email'=> $login_user->email
+                    'email'=> $login_user->email
                     ]);
             if ($login_user->login_check === 0) { //issetではNULLのみfalse  空文字・0・false全てtrueになる→!issetはNULLのみtrue それ以外はfalse
-                
+
                 $name = $login_user->last_name;
-                // dd($name); 
+                // dd($name);
                 return redirect()->route('student.firstlogin')->with('login_user', $name); //（ログインチェックがtrueじゃなければ。パスワード変更画面へ）
-            
+
             }else if ($login_user->login_check === 1) {
                 $request->session()->put('login_user_id', $login_user->id);
                 return redirect('student/home'); //（ログインチェックがfaulseでない→trueであればhome画面へ）
             }
-            
-        } 
+
+        }
 
             $message = "パスワードが間違っています";
             return view('student.login',compact('message'));
 
-        
+
         //メールアドレスとパスワードが一致するかどうかを判別し、一致しなければ【ログインIDもしくはパスワードが違います】
         //一致したら、以下の処理
 
-    } 
+    }
 
     public function student_f_login()
-    {   
+    {
         return view('student/firstlogin');
     }
 
@@ -156,14 +167,14 @@ class UserController extends Controller
         $login_user->password = Hash::make($request->password);
         $login_user->login_check = 1;
         $login_user->save();
-        
+
         return redirect('student/home');
-    
+
     }
 
 
     public function s_edit()//ただの画面遷移なのでRequestはつけない
-    {   
+    {
         $id = session('id');//セッションに保存されたidを取得
         $user_email = User::where('id', $id)->first('email');
         $user_email = $user_email->email;
@@ -176,4 +187,3 @@ class UserController extends Controller
         dd($request);
     }
 }
-

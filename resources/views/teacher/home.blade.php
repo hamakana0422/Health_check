@@ -4,11 +4,8 @@
 
 @section('content')
     <div class="d-grid gap-5 col-4 mx-auto py-5">
-        <button type="submit" class="btn btn-primary" onclick="location.href='list'">
-            {{ __('生徒一覧画面') }}
-        </button>
-        <button type="submit" class="btn btn-primary" onclick="location.href='notification'">
-            {{ __('お知らせ投稿') }}
-        </button>
+        <a href="/teacher/list" class="btn btn-primary">{{ __('生徒一覧画面') }}</a>
+        <a href="notification" class="btn btn-primary">{{ __('お知らせ投稿') }}</a>
+        {{-- <a href="../teacher/chat" class="btn btn-primary">{{ __('生徒とチャット') }}</a> --}}
     </div>
 @endsection
