@@ -27,7 +27,7 @@
                         <!-- @guest
                             @if (Route::has('login')) -->
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ url('/teacher/edit') }}">{{ __('アカウント作成／編集') }}</a>
+                                    <a class="nav-link" href="{{ url('/teacher/account') }}">{{ __('アカウント作成／編集') }}</a>
                                 </li>
                             <!-- @endif -->
                             <li class="nav-item">
@@ -57,7 +57,7 @@
         <button type="submit" class="btn btn-primary" onclick="location.href='notification'">
             {{ __('お知らせ投稿') }}
         </button>
-        <button type="submit" class="btn btn-primary" onclick="location.href='../chat'">
+        <button type="submit" class="btn btn-primary" onclick="location.href='../teacher/chat'">
             {{ __('生徒とチャット') }}
         </button>
     </div>
