@@ -4,11 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -86,6 +81,24 @@ Route::get('/student/home', function() {
     return view ('student/home');
 }); // 2022/5/15 下村追記 4.生徒用ホーム画面用
 
+Route::get('/student/list', function() {
+    return view ('student/list');
+}); // 2022/5/28 下村追記 先生一覧画面用
+
+
+// チャット画面
+// Route::get('chat', [App\Http\Controllers\MessageController::class, 'chat']);
+// 2022/5/16 住吉Route変更
+// 2022/5/28 下村"先生用・生徒用のチャット画面を作成したので、ルーティング変更となります"
+
+
+Route::get('/student/chat', function() {
+    return view ('student/chat');
+}); // 2022/5/28 下村追記 生徒用チャット画面用
+
+Route::get('/teacher/chat', function() {
+    return view ('teacher/chat');
+}); // 2022/5/28 下村追記 先生用チャット画面用
 
 
 // Route::get('/student/edit', function () {

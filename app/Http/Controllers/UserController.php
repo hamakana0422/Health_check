@@ -131,6 +131,7 @@ class UserController extends Controller
                 return redirect()->route('student.firstlogin')->with('login_user', $name); //（ログインチェックがtrueじゃなければ。パスワード変更画面へ）
 
             }else if ($login_user->login_check === 1) {
+                $request->session()->put('login_user_id', $login_user->id);
                 return redirect('student/home'); //（ログインチェックがfaulseでない→trueであればhome画面へ）
             }
 

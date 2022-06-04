@@ -72,7 +72,7 @@
         <button type="submit" class="btn btn-primary" onclick="location.href='manage/'">
             {{ __('体調報告画面') }}
         </button>
-        <button type="submit" class="btn btn-primary" onclick="location.href='../chat'">
+        <button type="submit" class="btn btn-primary" onclick="location.href='../student/list'">
             {{ __('先生とチャット') }}
         </button>
     </div>
