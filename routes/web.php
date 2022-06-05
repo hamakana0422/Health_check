@@ -15,7 +15,9 @@ Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 'login
 
 Route::post('/teacher/login', [App\Http\Controllers\UserController::class, 't_login'])->name('teacher.login');//OK
 
-Route::get('/teacher/home',  [App\Http\Controllers\UserController::class, 't_home']);
+Route::get('/teacher/logout', [App\Http\Controllers\UserController::class, 't_logout'])->name('logout');//OK
+
+Route::get('/teacher/home', [App\Http\Controllers\UserController::class, 't_home']);//OK
 
 Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create'])->name('teacher.create');//OK
 
@@ -30,6 +32,8 @@ Route::get('/teacher/delete/{id}', [App\Http\Controllers\UserController::class, 
 Route::get('/teacher/report/{id}', [App\Http\Controllers\ReportController::class, 't_report']);
 
 Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
+
+Route::put('/teacher/edit', [App\Http\Controllers\UserController::class, 't_update']);
 
 Route::get('/teacher/notification', function() {
     return view ('teacher/notification');
