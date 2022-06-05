@@ -14,8 +14,8 @@ class ListController extends Controller
         if(is_null($request->session()->get('users'))){
             return redirect('teacher/login');
         }
-         
-        $users = User::all();
+     
+        $users = User::where('user_type', '=', '1')->get();
         return view('teacher.list',['users' => $users]);
     }
 
@@ -27,6 +27,6 @@ class ListController extends Controller
         $user->delete();
         return redirect('teacher/list');
     }
-    
+
 
 }

@@ -21,9 +21,25 @@
 </head>
 <body>
     <div id="app">
+        <header>
+            <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ url('/teacher/home') }}">
+                        {{ __('東京小学校　体調管理システム') }}
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                </div>
+            </nav>
+        </header>
         <main class="py-4">
             @yield('content')
         </main>
     </div>
+
 </body>
 </html>

@@ -1,31 +1,11 @@
 <!-- 7-2.お知らせ文編集／削除選択画面 -->
 
-@extends('layouts.app')
+@extends('layouts.teacher')
 
 @section('content')
 <form method="POST" action="{{ url('/teacher/noticehistory') }}">
     @csrf
-<div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/teacher/home') }}">
-                    {{ __('東京小学校　体調管理システム') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-
-            </div>
-        </nav>
-
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
-
-    <div class="gap-5 col-4 mx-3">
+    <div class="gap-5 col-4 mx-3 py-4">
         <button type="submit" class="btn btn-primary">
             <a href="{{ url('/teacher/home') }}"></a>{{ __('ホーム画面へ戻る') }}
         </button>
@@ -50,5 +30,4 @@
             <td style="text-align: center;"><button type="submit" class="btn btn-danger">削除する</button></td>
         </tr>
     </table>
-
-</div>
+@endsection

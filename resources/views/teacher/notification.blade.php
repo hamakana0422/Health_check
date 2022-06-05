@@ -41,7 +41,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-secondary" onclick="location.href='teacher/noticehistory'">
+                                <button type="submit" class="btn btn-secondary" onclick="location.href='../teacher/noticehistory'">
                                     {{ __('以前投稿した内容一覧') }}
                                 </button>
                             </div>
