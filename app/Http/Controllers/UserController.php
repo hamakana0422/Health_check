@@ -71,9 +71,10 @@ class UserController extends Controller
         return view('student.login');
 
     }
+    
 
     //ログイン画面で先生か生徒か、初回ログインか２回目以降かの判別をする→生徒と先生のログイン画面は元々違うので、
-    //
+    //ステータスは0か1か
     public function f_login(Request $request)
     {
         $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○

@@ -67,7 +67,7 @@ Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, '
 
 Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
 
-Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, '']);
+Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, 'f_login']);
 
 Route::get('/student/report', [App\Http\Controllers\ReportController::class, 's_report']);
 
