@@ -13,7 +13,6 @@ class UserController extends Controller
     //コンストラクタ・・認証機能をUserControllerで有効にするためのコード？
     
 
-
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
