@@ -18,6 +18,7 @@ $(function () {
         }
         var chat_room_id = $('#chat_room_id').val()
         var login_user_id = $('#login_user_id').val()
+        var name = $('#name').val()
         $.ajax({
     
             // formと同じでrestでのやりとりはトークン必須なので追加しました。
@@ -59,7 +60,7 @@ $(function () {
                             <div class="media-body comment-body">
                                 <div class="row">
                                     <div class="flex-row">
-                                        <span class="comment-body-user" id="user_name">田中学</span>
+                                        <span class="comment-body-user" id="user_name">${name}</span>
                                         <span>　</span>
                                         <span class="comment-body-user small" id="created_at">${created_date}</span>
                                     </div>
