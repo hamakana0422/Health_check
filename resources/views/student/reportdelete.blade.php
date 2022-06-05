@@ -26,101 +26,23 @@
                                 <th></th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <tr>
-                                    <td>2022/5/1</td>
-                                    <td>快調</td>
-                                    <td>36.5</td>
-                                    <td>3</td>
-                                    <td>8</td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td>2022/5/2</td>
-                                    <td>普通</td>
-                                    <td>36.5</td>
-                                    <td>3</td>
-                                    <td>8</td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                                <tr>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                    <td><button>編集する</button></td>
-                                    <td><button>削除する</button></td>
-                                </tr>
-                            </tbody>
-                            </table>
+                            @foreach ($reports as $report)
+                            <tr>
+                                <td>{{ $report->created_at }}</td>
+                                <td>{{ $report->condition }}</td>
+                                <td>{{ $report->temperature }}</td>
+                                <td>{{ $report->meal }}</td>
+                                <td>{{ $report->sleep }}</td>
+                                <td><a href="{{ url('/student/report/'.$report->id)}}"><button type="submit" class="btn btn-primary">
+                                    {{ __('編集する') }}
+                                </td></button>
+                                <form action="{{ url('/report/delete/' . $report->id )}}" method="POST">
+                                @csrf
+                                <td><input type="submit" class="btn btn-danger btn-dell" value="削除"></td>
+                                </form>
+                            </tr>
+                            @endforeach
                         </div>
-                    
                 </div>
             </div>
         </div>

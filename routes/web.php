@@ -90,11 +90,11 @@ Route::get('/student/list', function() {
 
 Route::get('/student/newslist', function() {
     return view ('student/newslist');
-}); 
+});
 
-Route::get('/student/manage', function() {
-    return view ('student/manage');
-}); 
+// Route::get('/student/manage', function() {
+//     return view ('student/manage');
+// });
 
 // チャット画面
 // Route::get('chat', [App\Http\Controllers\MessageController::class, 'chat']);
@@ -129,14 +129,14 @@ Route::get('/test1', function () {
 });
 
 //中武追加 8-2報告情報編集画面.【生徒用】
-Route::get('/test2', function () {
-    return view('student/reportdelete');
-});
+Route::get('/student/reportdelete/{id}', [App\Http\Controllers\ReportController::class, 's_reportdelete']);
+
+Route::post('/report/delete/{id}', [App\Http\Controllers\ReportController::class, 'report_destroy']);
 
 //中武追加 8-3報告情報編集画面.【生徒用】
-Route::get('/test3', function () {
-    return view('student/report');
-});
+Route::get('/student/report/{id}', [App\Http\Controllers\ReportController::class, 's_report']);
+
+Route::post('/student/reportedit/{id}', [App\Http\Controllers\ReportController::class, 's_reportedit']);
 
 //中武追加 10-1お知らせ文一覧画面.【生徒用】
 Route::get('/test4', function () {

@@ -40,7 +40,7 @@
                     </form>
                     <button type="submit" class="btn btn-primary my-3">報告する</button>
                     <a href="{{ url('/student/home') }}"><button type="button" class="btn btn-secondary">キャンセル</button></a>
-                    <a href="{{ url('/test4') }}"><button type="button" class="btn btn-secondary my-2">過去に報告した内容を</br>確認/編集する</button></a>
+                    <a href="{{ url('student/reportdelete') }}/{{ $id }}"><button type="button" class="btn btn-secondary my-2">過去に報告した内容を</br>確認/編集する</button></a>
                 </div>
             </div>
         </div>
