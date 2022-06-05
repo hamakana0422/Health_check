@@ -19,7 +19,7 @@
 
                             <!-- 自動的に現在のメールアドレスが表示されるように実装予定 -->
                             <div class="col-md-6">
-                                <p>{{ $user_email}}</p>
+                                <p>{{ $user_email }}</p>
                             </div>
                         </div>
 
