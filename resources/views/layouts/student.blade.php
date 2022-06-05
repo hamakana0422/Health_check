@@ -51,13 +51,7 @@
                             </li>
                             <!-- @endif -->
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    {{ __('ログアウト') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
+                                 <a class="nav-link" href="{{ url('/student/logout') }}">{{ __('ログアウト') }}</a>
                             </li>
                             @endguest
                         </ul>

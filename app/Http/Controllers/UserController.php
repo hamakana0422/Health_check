@@ -232,4 +232,11 @@ class UserController extends Controller
     {
         dd($request);
     }
+
+    public function s_logout(Request $request)
+    {   
+        $request->session()->flush();
+        return redirect('student/login');
+ 
+    }
 }
