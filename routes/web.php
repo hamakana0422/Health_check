@@ -101,7 +101,7 @@ Route::get('/student/manage', function() {
 // 2022/5/16 住吉Route変更
 // 2022/5/28 下村"先生用・生徒用のチャット画面を作成したので、ルーティング変更となります"
 
-// Route::get('/student/chat/{tid}/{id}', [App\Http\Controllers\HomeController::class, 'studentChat']);
+Route::get('/student/chat/{tid}/{id}', [App\Http\Controllers\HomeController::class, 'studentChat']);
 
 Route::get('/student/chat', function() {
     return view ('student/chat');

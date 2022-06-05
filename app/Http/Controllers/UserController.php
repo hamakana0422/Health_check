@@ -175,8 +175,10 @@ class UserController extends Controller
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
         if ($result) {
 
+            $name = $login_user->last_name . $login_user->first_name;
             session(['id' => $login_user->id,
-                    'email'=> $login_user->email
+                    'email'=> $login_user->email,
+                    'name'=> $name
                     ]);
             if ($login_user->login_check === 0) { //issetではNULLのみfalse  空文字・0・false全てtrueになる→!issetはNULLのみtrue それ以外はfalse
 

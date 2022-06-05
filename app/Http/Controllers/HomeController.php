@@ -27,17 +27,21 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function studentChat($tid,$id)
+    public function studentChat(Request $request, $tid,$id)
     {
         $login_user=1;
-        if ($login_user !== $id){
-            return redirect("/student/home");
-        }
+        // if ($login_user !== $id){
+        //     return redirect("/student/home");
+        // }
+        $name = $request->session()->get('name');
+
         $chatroom = chatroom::where('teacher_id', $tid)->where('student_id', $id)->first();
         $message = Message::where('chat_room_id', $chatroom->id)->get();
         return view('student.chat', [
             'chatroom' => $chatroom,
             'message' => $message,
+            'login_user_id' => $login_user,
+            'name' => $name
         ]);
     }
 }
