@@ -13,7 +13,6 @@ class UserController extends Controller
     //コンストラクタ・・認証機能をUserControllerで有効にするためのコード？
     
 
-
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
@@ -25,22 +24,39 @@ class UserController extends Controller
     }
 
     //先生
-    public function login_form()
-    {
+    public function login_form(Request $request)
+    {   
+        // $request->session()->flush();
+        $check = $request->session()->get('users');
+        if(isset($check)){
+        return redirect('teacher/home');
+ 
+    }
+        // $request->session()->flush();
         return view('teacher.login');
     }
 
 
     public function t_create(Request $request)
-    {
+    {   
+        
+        // if(is_null($request->session()->get('users'))){
+        // return redirect('teacher/login');
+        // }
+
         return view('teacher.create');
 
     }
 
-    public function t_home()
-    {
-        return view('teacher.home');
 
+    public function t_home(Request $request)
+    {
+        if(is_null($request->session()->get('users'))){
+            return redirect('teacher/login');
+        }
+
+         return view('teacher.home');
+        
     }
 
     // 先生の会員登録
@@ -62,27 +78,41 @@ class UserController extends Controller
 
     public function t_login(Request $request)
     {
-
         $login_user = User::where('email', $request->email)->first(); //２件以上のレコードがある場合はget○
 
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
         if ($result){
 
+            $request->session()->put('users', $request->email);
+            // dd($request->session);
             return redirect('teacher/home');
         }
             $message = "パスワードが間違っています";
             return view('teacher.login',compact('message'));
     }//OK
+ 
+    public function create_form(Request $request)
+    {   
+        if(is_null($request->session()->get('users'))){
+            return redirect('teacher/login');
+        }
 
-    public function create_form()
-    {
         return view('teacher.registerforstudent');
 
     }
 
+
+    public function t_logout(Request $request)
+    {   
+        $request->session()->flush();
+        return redirect('teacher/login');
+ 
+    }//OK
+
     public function registerstudent(Request $request)
     {
         //【todo/Validation】
+
         User::create([
             'user_type' => 1,
             'first_name' => $request->first_name,
@@ -100,12 +130,27 @@ class UserController extends Controller
 
     }
 
-    public function t_edit()
-    {
-        $id = session('id');//セッションに保存されたidを取得
-        $user_email = User::where('id', $id)->first('email');
-        $user_email = $user_email->email;
+    public function t_edit(Request $request)
+    {   
+        if(is_null($request->session()->get('users'))){
+            return redirect('teacher/login');
+        }
+
+        $user_email = $request->session()->get('users');
         return view('teacher.edit',compact('user_email'));
+
+    }
+
+    public function t_update(Request $request)
+    {
+        $email = $request->session()->get('users'); //セッションに格納されたキー'user'の値を取得
+        $login_user = User::where('email', $email)->first(['id','login_check','first_name','last_name','password']);
+        $login_user->email = $request->email;
+        $login_user->password = Hash::make($request->password);
+        $login_user->save();
+        
+        return redirect('teacher/home');
+    
     }
 
     public function account_destroy(Request $request)
@@ -130,8 +175,10 @@ class UserController extends Controller
         $result = Hash::check($request->password, $login_user->password); //Hash::が入力されたパスワードをハッシュ化してその上でDBにあるものと一致するか判別してくれる。
         if ($result) {
 
+            $name = $login_user->last_name . $login_user->first_name;
             session(['id' => $login_user->id,
-                    'email'=> $login_user->email
+                    'email'=> $login_user->email,
+                    'name'=> $name
                     ]);
             if ($login_user->login_check === 0) { //issetではNULLのみfalse  空文字・0・false全てtrueになる→!issetはNULLのみtrue それ以外はfalse
 

@@ -9,11 +9,16 @@ use App\Models\User;
 class ListController extends Controller
 {
 
-    public function t_list()
-    {
+    public function t_list(Request $request)
+    {   
+        if(is_null($request->session()->get('users'))){
+            return redirect('teacher/login');
+        }
+     
         $users = User::where('user_type', '=', '1')->get();
         return view('teacher.list',['users' => $users]);
     }
+
 
     public function account_destroy(Request $request)
     {
