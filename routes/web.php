@@ -15,7 +15,7 @@ Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 'login
 
 Route::post('/teacher/login', [App\Http\Controllers\UserController::class, 't_login'])->name('teacher.login');//OK
 
-Route::get('/teacher/logout', [App\Http\Controllers\UserController::class, 't_logout'])->name('logout');//OK
+Route::get('/teacher/logout', [App\Http\Controllers\UserController::class, 't_logout'])->name('t_logout');//OK
 
 Route::get('/teacher/home', [App\Http\Controllers\UserController::class, 't_home']);//OK
 
@@ -69,7 +69,7 @@ Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, '
 
 Route::put('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
 
-// Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, '']);
+Route::get('/student/logout', [App\Http\Controllers\UserController::class, 's_logout'])->name('s_logout');//OK
 
 Route::get('/student/report', [App\Http\Controllers\ReportController::class, 's_report']);
 
