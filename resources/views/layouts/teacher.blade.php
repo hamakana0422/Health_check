@@ -32,14 +32,38 @@
                     </button>
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        <!-- Left Side Of Navbar -->
+                        <ul class="navbar-nav me-auto">
 
+                        </ul>
+
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav ms-auto">
+                            <!-- Authentication Links -->
+                            <!-- @guest
+                                @if (Route::has('login')) -->
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="{{ url('/teacher/edit') }}">{{ __('アカウント作成／編集') }}</a>
+                                    </li>
+                                <!-- @endif -->
+                                <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                            {{ __('ログアウト') }}
+                                        </a>
+
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                        </form>
+                                </li>
+                            @endguest
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </header>
-        <main class="py-4">
-            @yield('content')
-        </main>
-    </div>
 
+        @yield('content')
+
+    </div>
 </body>
 </html>

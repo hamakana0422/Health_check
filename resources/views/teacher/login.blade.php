@@ -33,7 +33,7 @@
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                <!-- 濱田追加分 -->
+                                <!-- 濱田追加分 パスワード誤りのエラーメッセージ-->
                                 @if(isset($message))
                                 <div class = "">{{ $message }}</div>
                                 @endif

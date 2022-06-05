@@ -4,11 +4,6 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ReportController;
 
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
@@ -16,21 +11,29 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 // 以下、先生用
-Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 't_login']);//OK
+Route::get('/teacher/login', [App\Http\Controllers\UserController::class, 'login_form']);//OK
 
-Route::post('/teacher/login', [App\Http\Controllers\UserController::class, 'f_login'])->name('teacher.login');//OK
+Route::post('/teacher/login', [App\Http\Controllers\UserController::class, 't_login'])->name('teacher.login');//OK
 
-// Route::get('/teacher/login', [App\Http\Controllers\HomeController::class, 'index']);
+Route::get('/teacher/logout', [App\Http\Controllers\UserController::class, 't_logout'])->name('logout');//OK
+
+Route::get('/teacher/home', [App\Http\Controllers\UserController::class, 't_home']);//OK
 
 Route::get('/teacher/create', [App\Http\Controllers\UserController::class, 't_create'])->name('teacher.create');//OK
 
 Route::post('/teacher/create', [App\Http\Controllers\UserController::class, 'insertTeacher']);//OK
 
-Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);
+Route::get('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'create_form']);//OK
 
-Route::get('/teacher/report', [App\Http\Controllers\ReportController::class, 't_report']);
+Route::post('/teacher/registerforstudent', [App\Http\Controllers\UserController::class, 'registerstudent']);//OK
+
+Route::get('/teacher/delete/{id}', [App\Http\Controllers\UserController::class, 'account_destroy']);
+
+Route::get('/teacher/report/{id}', [App\Http\Controllers\ReportController::class, 't_report']);
 
 Route::get('/teacher/edit', [App\Http\Controllers\UserController::class, 't_edit']);
+
+Route::put('/teacher/edit', [App\Http\Controllers\UserController::class, 't_update']);
 
 Route::get('/teacher/notification', function() {
     return view ('teacher/notification');
@@ -44,13 +47,12 @@ Route::get('/teacher/edithistory', function() {
     return view ('teacher/edithistory');
 });
 
-Route::get('/teacher/home', function() {
-    return view ('teacher/home');
-}); // 2022/5/15 下村追記 4.先生用ホーム画面用
+// Route::get('/teacher/home', function() {
+//     return view ('teacher/home');
+// });  2022/5/15 下村追記 4.先生用ホーム画面用
 
-Route::get('/teacher/list', function() {
-    return view ('teacher/list');
-}); // 2022/5/15 下村追記 5-1.生徒一覧画面用
+Route::get('/teacher/list', [App\Http\Controllers\ListController::class, 't_list']);
+// 2022/5/15 下村追記 5-1.生徒一覧画面用
 
 // 2022/5/16 住吉 5-2.生徒体調確認画面用 Route文変更
 
@@ -61,34 +63,65 @@ Route::get('/teacher/account', function() {
 // 以下、生徒用
 Route::get('/student/login', [App\Http\Controllers\UserController::class, 's_login']);//OK
 
-Route::post('/student/login',[App\Http\Controllers\UserController::class, 'f_login']);//OK
+Route::post('/student/login',[App\Http\Controllers\UserController::class, 'login_check']);//OK
 
-Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'student_f_login']);
+Route::get('/student/firstlogin', [App\Http\Controllers\UserController::class, 'student_f_login'])->name('student.firstlogin');
 
-Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
+Route::put('/student/firstlogin', [App\Http\Controllers\UserController::class, 'change_pass']);
 
 Route::post('/student/firstlogin', [App\Http\Controllers\UserController::class, 'f_login']);
 
 Route::get('/student/report', [App\Http\Controllers\ReportController::class, 's_report']);
 
-Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit']);
+Route::post('/student/report', [App\Http\Controllers\ReportController::class, 'registerReport']);
+
+Route::get('/student/edit', [App\Http\Controllers\UserController::class, 's_edit'])->name('student.edit');
+
+//Route::post('/student/edit',[App\Http\Controllers\UserController::class, '']);
 
 Route::get('/student/home', function() {
     return view ('student/home');
 }); // 2022/5/15 下村追記 4.生徒用ホーム画面用
 
+Route::get('/student/list', function() {
+    return view ('student/list');
+}); // 2022/5/28 下村追記 先生一覧画面用
 
 
-Route::get('/student/edit', function () {
-    return view('student/edit');
+Route::get('/student/newslist', function() {
+    return view ('student/newslist');
+}); 
+
+Route::get('/student/manage', function() {
+    return view ('student/manage');
+}); 
+
+// チャット画面
+// Route::get('chat', [App\Http\Controllers\MessageController::class, 'chat']);
+// 2022/5/16 住吉Route変更
+// 2022/5/28 下村"先生用・生徒用のチャット画面を作成したので、ルーティング変更となります"
+
+// Route::get('/student/chat/{tid}/{id}', [App\Http\Controllers\HomeController::class, 'studentChat']);
+
+Route::get('/student/chat', function() {
+    return view ('student/chat');
 });
+Route::get('/student/chat', [App\Http\Controllers\MessageController::class,'s_chat'])->name('message.chat');
+
+Route::get('/teacher/chat', function() {
+    return view ('teacher/chat');
+}); // 2022/5/28 下村追記 先生用チャット画面用
+Route::get('/teacher/chat', [App\Http\Controllers\MessageController::class,'t_chat'])->name('message.chat');
+
+// Route::get('/student/edit', function () {
+//     return view('student/edit');
+// });
 
 //中武追加 8-1体調管理報告画面用
 
-Route::get('/test', function () {
-    return view('student/manage');
-});
-Route::post('/student/test',[App\Http\Controllers\UserController::class,'s_store']);
+Route::get('/student/manage', [App\Http\Controllers\ReportController::class, 's_manage']);
+
+Route::post('/student/manage',[App\Http\Controllers\ReportController::class,'s_instert']);
 
 //中武追加 10-2お知らせ文一覧画面用【生徒用】
 Route::get('/test1', function () {

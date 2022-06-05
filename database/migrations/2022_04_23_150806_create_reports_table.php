@@ -14,7 +14,7 @@ class CreateReportsTable extends Migration
     public function up()
     {
         Schema::create('reports', function (Blueprint $table) {
-            $table->bigInteger('id')->index();
+            $table->id();
             $table->bigInteger('user_id')->unsiged()->index();
             $table->string('student_name', 40)->index()->nullable()->comment('生徒の名前');
             $table->string('condition', 10)->comment('体調について');
