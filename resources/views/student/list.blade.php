@@ -20,9 +20,10 @@
         </tr>
         <!-- 下記波括弧部分(姓～メールアドレス)については、レコードから情報を取得できるようにすること -->
         <tr>
-            <td>{{ '佐藤先生' }}</td>
+            <td>{{ '日本先生' }}</td>
             <!-- TODO:リンク先の後ろにユーザーIDを取得させる(今は固定値で1が入っている)-->
-            <td style="text-align: center;"><a href="{{ url('/student/chat/1') }}/1">{{ 'チャット画面へ' }}</a></td>
+            <td style="text-align: center;"><a href="{{ url('/student/chat/1') }}/2">{{ 'チャット画面へ' }}</a></td>
+            {{-- <td style="text-align: center;"><a href="{{ url('/student/chat/{{ $chatroom->id }}') }}/{{ $user->id }}">{{ 'チャット画面へ' }}</a></td> --}}
         </tr>
         {{-- <tr>
             <td>{{ '西尾先生' }}</td>

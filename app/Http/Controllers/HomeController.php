@@ -27,12 +27,40 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+        // 先生用チャットのコントローラー
+        // public function teacherChat(Request $request, $tid,$id)
+        // {
+        //     $login_user=1;
+        //     // ログインユーザーIDとidが一致しない場合、生徒用ホーム画面へ遷移させる
+        //     // if ($login_user !== $id){
+        //     //     return redirect("/student/home");
+        //     // }
+            
+        //     $name = $request->session()->get('name');
+    
+        //     $chatroom = chatroom::where('teacher_id', $tid)->where('student_id', $id)->first();
+        //     $message = Message::where('chat_room_id', $chatroom->id)->get();
+        //     return view('teacher.chat', [
+        //         'chatroom' => $chatroom,
+        //         'message' => $message,
+        //         'login_user_id' => $login_user,
+        //         'name' => $name
+        //     ]);
+        // }
+
+    // 生徒用チャットのコントローラー
     public function studentChat(Request $request, $tid,$id)
     {
-        $login_user=1;
-        // if ($login_user !== $id){
-        //     return redirect("/student/home");
-        // }
+        // dd($request);
+        $login_user=$request->session()->get('id'); //仮で1を代入
+        // dd($login_user);
+        // ログインユーザーIDとidが一致しない場合、生徒用ホーム画面へ遷移させる
+        if ($login_user != $id){
+            echo "1"; exit;
+            // return redirect("/student/home");
+        }
+        
         $name = $request->session()->get('name');
 
         $chatroom = chatroom::where('teacher_id', $tid)->where('student_id', $id)->first();

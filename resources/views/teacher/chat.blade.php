@@ -64,7 +64,8 @@
 
         <div class="comment-container row justify-content-center">
             <div class="input-group comment-area">
-                <input type="hidden" id="chat_room_id" value="{{ $chat_room_id }}">
+                <?php // dd($body) ?>
+                <input type="hidden" id="chat_room_id" value="{{ $chatroom }}">
                 <input type="hidden" id="login_user_id" value="{{ $login_user_id }}">
                 <textarea id="msg" class="form-control" placeholder="ここにメッセージを入力(最大250文字まで)" maxlength="250" aria-label="With textarea"></textarea>
                 <button id="submit-button" type="input-group-prepend button" class="btn btn-outline-primary comment-btn">投稿する</button>
